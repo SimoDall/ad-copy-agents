@@ -2,7 +2,7 @@
 name: mechanism-generator
 description: Genera combinazioni UMP/UMS (meccanismo unico dietro il problema/la soluzione = "One Belief") per il desiderio scelto. Usa il testo esatto del Prompt 4 del documento "The Psychological Scaling Model", invariato.
 tools: Read, Write, WebSearch, Bash
-model: sonnet
+model: claude-sonnet-5
 memory: project
 ---
 

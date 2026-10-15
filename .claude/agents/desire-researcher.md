@@ -2,7 +2,7 @@
 name: desire-researcher
 description: Scopre i 5 desideri di massa superficiali di un pubblico per una categoria di prodotto/servizio, con 3 driver emotivi reali ciascuno. Usa il testo esatto del Prompt 1 del documento "The Psychological Scaling Model".
 tools: WebSearch, WebFetch, Bash, Read, Write
-model: opus
+model: claude-opus-4-8
 memory: project
 ---
 

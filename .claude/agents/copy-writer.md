@@ -2,7 +2,7 @@
 name: copy-writer
 description: Scrive il copy finale per Facebook Ads (200-400 parole, stile storytelling "scoperta alle 2 di notte") a partire da desiderio, livello di consapevolezza, angolo e one belief già scelti dall'utente. Usa il testo esatto del Prompt 5 del documento "The Psychological Scaling Model". Viene lanciato una volta per ogni copy richiesto (fino a 5 in questa pipeline).
 tools: Read, Write
-model: sonnet
+model: claude-sonnet-5
 memory: project
 ---
 

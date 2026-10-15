@@ -75,16 +75,19 @@ projects/<slug-prodotto>/
 
 ## Modelli
 
-- `desire-researcher` e `awareness-researcher`: **Opus**. Sono le due fasi
-  fondative — tutto il resto della pipeline eredita i loro errori — e
+- `desire-researcher` e `awareness-researcher`: **`claude-opus-4-8`**. Sono le
+  due fasi fondative — tutto il resto della pipeline eredita i loro errori — e
   richiedono di sintetizzare/triangolare centinaia di punti dati eterogenei
   mantenendo rigore. Vale il costo/tempo maggiore.
-- `angle-generator`, `mechanism-generator`, `copy-writer`: **Sonnet**. Lavorano
-  su framework già molto strutturati (Belief-Gap-Bridge, UMP/UMS, lo schema di
-  storytelling del copy) e li testerai/rigenererai più volte: meglio restare
-  rapidi ed economici qui. Se dopo aver visto i risultati la qualità non ti
-  convince (angoli scontati, copy piatto), è il punto giusto dove provare a
-  passare a Opus per quell'agente specifico.
+- `angle-generator`, `mechanism-generator`, `copy-writer`: **`claude-sonnet-5`**.
+  Lavorano su framework già molto strutturati (Belief-Gap-Bridge, UMP/UMS, lo
+  schema di storytelling del copy) e li testerai/rigenererai più volte: meglio
+  restare rapidi ed economici qui. Se dopo aver visto i risultati la qualità non
+  ti convince (angoli scontati, copy piatto), è il punto giusto dove provare a
+  passare a `claude-opus-4-8` per quell'agente specifico.
+- Questi sono ID di modello espliciti (non gli alias generici `opus`/`sonnet`,
+  che punterebbero sempre all'ultima versione, es. Opus 5.5/Sonnet 5.5): se in
+  futuro vuoi aggiornare versione, cambia qui la stringa del modello.
 
 ## Note
 

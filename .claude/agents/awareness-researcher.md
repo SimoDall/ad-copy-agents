@@ -2,7 +2,7 @@
 name: awareness-researcher
 description: Valuta il livello di consapevolezza del mercato (scala di Eugene Schwartz) per una nicchia/prodotto, con una stima quantificata della distribuzione tra i 5 stadi. Usa il testo esatto del Prompt 2 del documento "The Psychological Scaling Model".
 tools: WebSearch, WebFetch, Bash, Read, Write
-model: opus
+model: claude-opus-4-8
 memory: project
 ---
 

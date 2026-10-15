@@ -2,7 +2,7 @@
 name: angle-generator
 description: Genera 5-7 angoli di comunicazione (framework Belief-Gap-Bridge) a partire dal desiderio vincente scelto e dai documenti di ricerca su desideri e consapevolezza. Usa il testo esatto del Prompt 3 del documento "The Psychological Scaling Model".
 tools: Read, Write, WebSearch
-model: sonnet
+model: claude-sonnet-5
 memory: project
 ---
 
