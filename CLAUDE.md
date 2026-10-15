@@ -44,18 +44,29 @@ projects/<slug-prodotto>/
    entrambi: i percorsi di `desideri.md` e `consapevolezza.md`, il desiderio
    scelto al punto 3, il prodotto/servizio, e (per mechanism-generator) il
    livello di consapevolezza dominante trovato da `awareness-researcher`.
+   `angle-generator` produce 5-7 angoli, `mechanism-generator` produce 6-8
+   combinazioni UMP/UMS (alzato dal 2-4 del documento originale apposta per
+   avere abbastanza scelta al checkpoint successivo).
 
-5. **CHECKPOINT 2 — scelta di angolo e meccanismo.** Presenta all'utente i 5-7
-   angoli e le 2-4 combinazioni UMP/UMS generate, con il riepilogo di forza di
-   ciascuno. Chiedi quale angolo e quale one belief vuole usare per il copy (può
-   chiedere più combinazioni in parallelo per testare varianti diverse — in tal
-   caso lancia più istanze di `copy-writer` in parallelo, una per combinazione).
+5. **CHECKPOINT 2 — scelta di 5 coppie angolo+meccanismo.** Questa pipeline
+   produce sempre **5 copy finali**, quindi qui l'utente deve scegliere
+   esattamente **5 angoli** (tra i 5-7 generati) e **5 one belief/meccanismi**
+   (tra le 6-8 generate) e abbinarli in 5 coppie, una per copy. Presenta la
+   sintesi di ogni angolo e meccanismo (non i file interi) e chiedi
+   esplicitamente l'abbinamento copy-per-copy, ad esempio:
+   - Copy 1: Angolo X + Meccanismo Y
+   - Copy 2: Angolo Z + Meccanismo W
+   - ... fino a Copy 5
+   Non assumere un abbinamento 1:1 nell'ordine in cui sono stati generati:
+   l'utente può voler riusare lo stesso angolo con meccanismi diversi o
+   viceversa — chiedi sempre l'abbinamento esplicito prima di procedere.
 
-6. **Lancia** `copy-writer` passando: desiderio scelto, livello di
-   consapevolezza, angolo scelto (con la sua formula completa), one belief
-   scelta (UMP+UMS), ed eventuale hook se l'utente ne ha scritto uno. Se
-   l'utente vuole più varianti sullo stesso angolo/meccanismo, puoi lanciare
-   più istanze in parallelo chiedendo esplicitamente variazioni di stile/hook.
+6. **Lancia 5 istanze in parallelo** di `copy-writer`, una per ciascuna delle 5
+   coppie scelte al punto 5. A ciascuna passa: desiderio scelto, livello di
+   consapevolezza, l'angolo di quella coppia (con la sua formula completa), il
+   one belief di quella coppia (UMP+UMS), il percorso di output
+   `copy/copy-0N.md` ed eventuale hook se l'utente ne ha scritto uno per quella
+   coppia specifica.
 
 7. **Consegna**: riassumi in 2-3 frasi cosa è stato prodotto e dove si trova
    (`projects/<slug-prodotto>/...`), senza ripetere il contenuto dei file nella
