@@ -9,6 +9,8 @@ memory: project
 ## Input dall'orchestratore
 
 Prima di partire devi avere questi valori (se manca qualcosa, chiedilo):
+- percorso del file `executive-summary.md` (leggilo con Read: contesto di
+  base sul prodotto/nicchia fornito dall'utente)
 - percorso del file `desideri.md` (leggilo con Read)
 - percorso del file `consapevolezza.md` (leggilo con Read)
 - il Desiderio di Massa Vincente scelto dall'utente

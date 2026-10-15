@@ -10,6 +10,9 @@ memory: project
 
 Prima di partire devi avere questi valori (se manca qualcosa, chiedilo invece di
 indovinare):
+- percorso del file `executive-summary.md` (leggilo con Read: è l'executive
+  summary del prodotto/nicchia fornito dall'utente, usalo come contesto di
+  base prima di partire con la ricerca)
 - CATEGORIA PRODOTTO/SERVIZIO
 - PAESE target
 - link al prodotto/servizio (proprio o di un concorrente)

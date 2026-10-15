@@ -15,6 +15,7 @@ non saltarli nemmeno se un'opzione sembra ovviamente migliore delle altre.
 Ogni prodotto/campagna ha una sua cartella in `projects/<slug-prodotto>/`, con:
 ```
 projects/<slug-prodotto>/
+  executive-summary.md ← fornito dall'utente (input, non output di un agente)
   desideri.md         ← output di desire-researcher
   consapevolezza.md   ← output di awareness-researcher
   angoli.md           ← output di angle-generator
@@ -28,12 +29,17 @@ projects/<slug-prodotto>/
 
 1. **Raccogli l'input iniziale** dall'utente: categoria/nicchia prodotto, paese
    target, link al prodotto (proprio o di un concorrente), eventuali link
-   Amazon/Etsy simili. Crea la cartella `projects/<slug-prodotto>/`.
+   Amazon/Etsy simili, e **l'executive summary del prodotto/nicchia** che
+   l'utente fornisce (obbligatorio, non opzionale — non chiedere di procedere
+   senza). Crea la cartella `projects/<slug-prodotto>/` e salva l'executive
+   summary in `executive-summary.md`.
 
 2. **Lancia in parallelo** `desire-researcher` e `awareness-researcher` (sono
    indipendenti tra loro — nessuno dei due ha bisogno dell'output dell'altro).
-   Passa a ciascuno l'input raccolto al punto 1 e il percorso della cartella di
-   output.
+   Passa a ciascuno l'input raccolto al punto 1 (incluso il percorso di
+   `executive-summary.md`, da far leggere con Read come contesto di base sul
+   prodotto/nicchia prima di partire con la ricerca) e il percorso della
+   cartella di output.
 
 3. **CHECKPOINT 1 — scelta del desiderio.** Presenta all'utente i 5 desideri
    trovati da `desire-researcher` (con i punti salienti, non il file intero) e
@@ -41,11 +47,12 @@ projects/<slug-prodotto>/
    Aspetta la risposta prima di continuare.
 
 4. **Lancia in parallelo** `angle-generator` e `mechanism-generator`, passando a
-   entrambi: i percorsi di `desideri.md` e `consapevolezza.md`, il desiderio
-   scelto al punto 3, il prodotto/servizio, e (per mechanism-generator) il
-   livello di consapevolezza dominante trovato da `awareness-researcher`.
-   `angle-generator` produce 5-7 angoli, `mechanism-generator` produce 2-4
-   combinazioni UMP/UMS (numeri originali del documento, invariati).
+   entrambi: i percorsi di `executive-summary.md`, `desideri.md` e
+   `consapevolezza.md`, il desiderio scelto al punto 3, il prodotto/servizio, e
+   (per mechanism-generator) il livello di consapevolezza dominante trovato da
+   `awareness-researcher`. `angle-generator` produce 5-7 angoli,
+   `mechanism-generator` produce 2-4 combinazioni UMP/UMS (numeri originali del
+   documento, invariati).
 
 5. **CHECKPOINT 2 — scelta di 5 coppie angolo+meccanismo.** Questa pipeline
    produce sempre **5 copy finali**. Dato che gli angoli sono 5-7 ma i
