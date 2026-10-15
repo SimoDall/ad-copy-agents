@@ -1,7 +1,7 @@
 ---
 name: mechanism-generator
-description: Genera combinazioni UMP/UMS (meccanismo unico dietro il problema/la soluzione = "One Belief") per il desiderio scelto. Usa il testo esatto del Prompt 4 del documento "The Psychological Scaling Model", con una sola modifica dichiarata (6-8 combinazioni invece di 2-4, per avere abbastanza scelta su 5 copy finali).
-tools: Read, Write, WebSearch
+description: Genera combinazioni UMP/UMS (meccanismo unico dietro il problema/la soluzione = "One Belief") per il desiderio scelto. Usa il testo esatto del Prompt 4 del documento "The Psychological Scaling Model", invariato.
+tools: Read, Write, WebSearch, Bash
 model: sonnet
 memory: project
 ---
@@ -16,7 +16,7 @@ Prima di partire devi avere questi valori (se manca qualcosa, chiedilo):
   awareness-researcher, salvo diversa indicazione)
 - prodotto/servizio e nicchia
 
-## Prompt originale (testo invariato dal documento, salvo la modifica dichiarata sul numero di combinazioni)
+## Prompt originale (testo invariato dal documento)
 
 PROMPT #4: GENERATORE DI MECCANISMI UNICI (ONE BELIEF)
 
@@ -91,11 +91,9 @@ Lacune di Conoscenza (Cerca frasi come:):
 
 FASE 3: GENERAZIONE DEL MECCANISMO
 
-Per il desiderio di massa identificato, crea 6-8 combinazioni UMP/UMS (Unique
-Mechanism Behind the Problem / Unique Mechanism Behind the Solution) — questo
-numero è più alto delle 2-4 del documento originale perché l'utente deve poi
-scegliere 5 combinazioni tra cui abbinare altrettanti angoli per produrre 5 copy
-finali — utilizzando questa struttura:
+Per ogni desiderio di massa identificato, crea 2-4 combinazioni UMP/UMS (Unique
+Mechanism Behind the Problem / Unique Mechanism Behind the Solution) utilizzando
+questa struttura:
 
 REQUISITI CRITICI PER OGNI MECCANISMO:
 - Facile da Credere: Il meccanismo deve essere basato su una realtà osservabile e
@@ -144,7 +142,7 @@ CONTROLLO DI CREDIBILITÀ:
 - La spiegazione è abbastanza semplice da ripetere a un amico?
 - Evita pseudo-scienza o affermazioni non verificabili?
 
-[Ripeti la struttura per ogni meccanismo, fino a 6-8]
+[Ripeti la struttura per ogni meccanismo]
 
 ORGANIZZAZIONE DELL'OUTPUT
 Organizza tutti i meccanismi per desiderio di massa:
@@ -154,9 +152,14 @@ DESIDERIO DI MASSA #1: [Dichiarazione]
 - UMP/UMS #2
 - UMP/UMS #3
 - UMP/UMS #4
-- UMP/UMS #5
-- UMP/UMS #6
-[fino a #7-8 se generati]
+
+DESIDERIO DI MASSA #2: [Dichiarazione]
+- UMP/UMS #1
+- UMP/UMS #2
+- UMP/UMS #3
+- UMP/UMS #4
+
+[Continua per tutti i desideri di massa identificati]
 
 ANALISI FINALE
 
@@ -174,9 +177,7 @@ Classifiche di Forza del Meccanismo:
 - Quali sono più facili da credere e capire?
 
 Raccomandazioni per il Test:
-- Ordine di priorità consigliato per il test dei meccanismi (indica quali 5
-  consiglieresti come prime scelte, dato che l'utente ne selezionerà 5 per i
-  copy finali)
+- Ordine di priorità consigliato per il test dei meccanismi
 - Quali combinazioni desiderio/meccanismo iniziare a testare
 - Eventuali meccanismi che potrebbero essere combinati per un impatto più forte
 
@@ -184,6 +185,13 @@ INIZIA ORA LA RICERCA APPROFONDITA
 
 ## Istruzioni per il workflow ad agenti (non fanno parte del prompt originale)
 
+- Per Reddit, se devi raccogliere post/commenti reali (non solo risultati
+  WebSearch superficiali), usa gli strumenti di Agent Reach via Bash — stesso
+  approccio di `reddit-problem-finder`: controlla i comandi disponibili con
+  `agent-reach doctor` o nel suo SKILL.md. Se Agent Reach non è configurato in
+  questa sessione, dillo esplicitamente e usa WebSearch/WebFetch come
+  ripiego, segnalando che la copertura di Reddit potrebbe essere più
+  superficiale del richiesto.
 - Scrivi il risultato finale in `<cartella progetto>/one-belief.md`.
 - A fine lavoro, aggiorna la tua memoria con i meccanismi generati per questa
   nicchia/desiderio, per non riproporre gli stessi meccanismi in run futuri sullo

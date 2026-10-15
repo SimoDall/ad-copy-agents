@@ -44,22 +44,23 @@ projects/<slug-prodotto>/
    entrambi: i percorsi di `desideri.md` e `consapevolezza.md`, il desiderio
    scelto al punto 3, il prodotto/servizio, e (per mechanism-generator) il
    livello di consapevolezza dominante trovato da `awareness-researcher`.
-   `angle-generator` produce 5-7 angoli, `mechanism-generator` produce 6-8
-   combinazioni UMP/UMS (alzato dal 2-4 del documento originale apposta per
-   avere abbastanza scelta al checkpoint successivo).
+   `angle-generator` produce 5-7 angoli, `mechanism-generator` produce 2-4
+   combinazioni UMP/UMS (numeri originali del documento, invariati).
 
 5. **CHECKPOINT 2 — scelta di 5 coppie angolo+meccanismo.** Questa pipeline
-   produce sempre **5 copy finali**, quindi qui l'utente deve scegliere
-   esattamente **5 angoli** (tra i 5-7 generati) e **5 one belief/meccanismi**
-   (tra le 6-8 generate) e abbinarli in 5 coppie, una per copy. Presenta la
-   sintesi di ogni angolo e meccanismo (non i file interi) e chiedi
-   esplicitamente l'abbinamento copy-per-copy, ad esempio:
-   - Copy 1: Angolo X + Meccanismo Y
-   - Copy 2: Angolo Z + Meccanismo W
+   produce sempre **5 copy finali**. Dato che gli angoli sono 5-7 ma i
+   meccanismi sono solo 2-4, i meccanismi vanno RIUSATI su più angoli: non
+   serve un meccanismo diverso per ogni copy. Fai scegliere all'utente
+   esattamente **5 angoli** (tra i 5-7 generati) e per ciascuno quale dei 2-4
+   meccanismi abbinargli (lo stesso meccanismo può comparire su più angoli).
+   Presenta la sintesi di ogni angolo e meccanismo (non i file interi) e
+   chiedi l'abbinamento copy-per-copy, ad esempio:
+   - Copy 1: Angolo X + Meccanismo A
+   - Copy 2: Angolo Y + Meccanismo A
+   - Copy 3: Angolo Z + Meccanismo B
    - ... fino a Copy 5
-   Non assumere un abbinamento 1:1 nell'ordine in cui sono stati generati:
-   l'utente può voler riusare lo stesso angolo con meccanismi diversi o
-   viceversa — chiedi sempre l'abbinamento esplicito prima di procedere.
+   Non assumere un abbinamento di default: chiedi sempre l'abbinamento
+   esplicito prima di procedere.
 
 6. **Lancia 5 istanze in parallelo** di `copy-writer`, una per ciascuna delle 5
    coppie scelte al punto 5. A ciascuna passa: desiderio scelto, livello di
@@ -71,6 +72,19 @@ projects/<slug-prodotto>/
 7. **Consegna**: riassumi in 2-3 frasi cosa è stato prodotto e dove si trova
    (`projects/<slug-prodotto>/...`), senza ripetere il contenuto dei file nella
    chat.
+
+## Modelli
+
+- `desire-researcher` e `awareness-researcher`: **Opus**. Sono le due fasi
+  fondative — tutto il resto della pipeline eredita i loro errori — e
+  richiedono di sintetizzare/triangolare centinaia di punti dati eterogenei
+  mantenendo rigore. Vale il costo/tempo maggiore.
+- `angle-generator`, `mechanism-generator`, `copy-writer`: **Sonnet**. Lavorano
+  su framework già molto strutturati (Belief-Gap-Bridge, UMP/UMS, lo schema di
+  storytelling del copy) e li testerai/rigenererai più volte: meglio restare
+  rapidi ed economici qui. Se dopo aver visto i risultati la qualità non ti
+  convince (angoli scontati, copy piatto), è il punto giusto dove provare a
+  passare a Opus per quell'agente specifico.
 
 ## Note
 

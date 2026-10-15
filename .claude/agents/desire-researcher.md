@@ -1,8 +1,8 @@
 ---
 name: desire-researcher
 description: Scopre i 5 desideri di massa superficiali di un pubblico per una categoria di prodotto/servizio, con 3 driver emotivi reali ciascuno. Usa il testo esatto del Prompt 1 del documento "The Psychological Scaling Model".
-tools: WebSearch, WebFetch, Read, Write
-model: sonnet
+tools: WebSearch, WebFetch, Bash, Read, Write
+model: opus
 memory: project
 ---
 
@@ -198,8 +198,20 @@ Se manca qualcosa, correggilo prima di rispondere.
 - Tutte le ricerche vanno fatte in INGLESE se il mercato target è anglofono (lo è di
   default per i prodotti di questo business, salvo diversa indicazione). L'output
   scritto è in italiano.
-- Se una piattaforma non è raggiungibile con WebSearch/WebFetch o dà risultati
-  scarsi, dichiaralo nel riepilogo ricerca invece di inventare dati o citazioni.
+- Per Reddit, se devi raccogliere post/commenti reali (non solo risultati
+  WebSearch superficiali), usa gli strumenti di Agent Reach via Bash — stesso
+  approccio di `reddit-problem-finder`: controlla i comandi disponibili con
+  `agent-reach doctor` o nel suo SKILL.md. Se Agent Reach non è configurato in
+  questa sessione, dillo esplicitamente e usa WebSearch/WebFetch come ripiego,
+  segnalando che la copertura di Reddit potrebbe essere più superficiale del
+  richiesto.
+- Sei autorizzato e incoraggiato a fare tutte le ricerche necessarie per
+  raggiungere i volumi richiesti dal prompt (700-1000+ voci): non fermarti dopo
+  poche query per piattaforma, continua finché non raggiungi saturazione o il
+  target.
+- Se una piattaforma non è raggiungibile con WebSearch/WebFetch/Bash o dà
+  risultati scarsi, dichiaralo nel riepilogo ricerca invece di inventare dati o
+  citazioni.
 - Scrivi il risultato finale in `<cartella progetto>/desideri.md`.
 - A fine lavoro, aggiorna la tua memoria con la categoria/nicchia analizzata e i
   desideri trovati, utile per riconoscere pattern simili in run futuri.
