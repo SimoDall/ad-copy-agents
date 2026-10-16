@@ -1,0 +1,72 @@
+[
+  {
+    "copy_id": "copy-01",
+    "image_id": "copy-01-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Candid iPhone photo, natural ambient light, a woman in her late forties sits on a wooden hallway bench in a family home, photographed from behind and slightly to the side so her face is not visible. She holds a phone in one hand and rests a closed manila folder on her knees. Soft morning window light falls across the hallway floor. Calm, unhurried mood, a quiet moment of getting organized rather than panic. Realistic, shallow depth of field, warm neutral tones. No logos, no legible text.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-02",
+    "image_id": "copy-02-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Candid iPhone photo, natural light, an open wooden drawer in a family den, neatly filled with colored folders and a few old envelopes. A hand, cropped at the wrist, lifts one blue folder out to reveal a sheet of paper inside. Warm afternoon light comes from a nearby window, a pair of reading glasses rests on the edge of the desk, cozy and lived-in. Realistic, shallow depth of field, warm tones. No faces, no logos, no legible text.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-03",
+    "image_id": "copy-03-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Candid iPhone photo, natural kitchen light, an open spiral notebook lies on a wooden kitchen counter beside a ceramic mug of tea and a pair of reading glasses. The pages are filled with handwritten lines in blue ink, and a pen rests across the open page. Morning sunlight from a window casts soft shadows. Unposed, lived-in, calm and personal feeling. Realistic, shallow depth of field, warm neutral palette. No people visible, no logos, no legible text.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-04",
+    "image_id": "copy-04-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Candid iPhone photo, natural daylight, a closed laptop on a kitchen table next to a small potted plant and a paper wall calendar behind it, with one date circled in pencil. A ceramic coffee mug and a notepad sit on the table. The scene is calm and ordinary, a gentle reminder to keep things up to date rather than a crisis. Realistic, shallow depth of field, soft warm tones. No people, no logos, no legible text.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-05",
+    "image_id": "copy-05-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Candid iPhone photo, natural kitchen light, two pairs of hands on opposite sides of a wooden table, cropped above the wrists so no faces appear. An older hand writes slowly with a fountain pen in an open binder, while a younger hand rests beside a folded printed page that is left untouched. Warm light, respectful and unhurried mood, the older person clearly in charge of the page. Realistic, shallow depth of field, warm neutral tones. No logos, no legible text.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  }
+]
