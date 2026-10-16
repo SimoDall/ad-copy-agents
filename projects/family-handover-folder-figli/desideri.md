@@ -3,304 +3,333 @@
 > Output di `desire-researcher` per il Family Handover Folder / The Thoughtful Gift Bundle.
 > Categoria: digital estate-planning / family emergency organizer posizionato come REGALO.
 > Paese target: USA (mercato anglofono; scalabile UK/CA/AU/NZ).
-> Pubblico analizzato: **Dana** — figlia/o adulto 44-58 anni di genitori 72-88, acquirente-regalo.
-> NON il genitore ("Barb"), NON il figlio già in piena crisi (Notify Everyone Kit).
-> Ricerca condotta in inglese (mercato target); output in italiano.
+> Pubblico analizzato: **Dana** — figlia/o adulto 44-58 anni di genitori 72-88, acquirente-regalo,
+> che si prepara MENTRE il genitore è ancora vivo. NON il genitore ("Barb"), NON il
+> figlio già in piena crisi.
+> Ricerca condotta in inglese (mercato target); output in italiano, citazioni in inglese.
 >
-> **Run corrente: 2026-10-16 (secondo tentativo).** Obiettivo del re-run: ampliare
-> i dati Reddit con lo scraper Apify `harshmaur/reddit-scraper`. **Obiettivo NON
-> raggiunto in questa sessione** — vedi nota metodologica. I 5 desideri sono quelli
-> del run precedente, **ri-validati** da un nuovo passaggio su fonti accessibili;
-> non sono emersi desideri nuovi.
+> **Run 2026-10-16 (terzo passaggio) — con dati Reddit reali via Apify.** Questa
+> versione sostituisce le stime dei run precedenti con **conteggi** ricavati da un
+> dataset Reddit effettivamente raccolto e analizzato. I 5 desideri sono confermati;
+> cambiano l'ordinamento basato sui conteggi e la mappa dei candidati nuovi.
 
 ---
 
-## NOTA METODOLOGICA E LIMITI (leggere prima dei dati)
+## 1. NOTA METODOLOGICA E LIMITI (leggere prima dei dati)
 
-### Run 2026-10-16 — lo scraper Apify NON è stato eseguibile
+### Dataset
+- **Scraper:** Apify `harshmaur/reddit-scraper`.
+- **Dataset ID:** `R4foHL2efKAGfemUG`.
+- **Item totali nel dataset:** 526 (post + commenti).
+- **Post selezionati:** 49 post, scelti per rilevanza (searchSort "relevance", searchTime
+  "year") e per voti più alti per keyword; i loro commenti sono stati raccolti nel passo B.
+- **Passo B parziale:** la raccolta dei commenti è stata interrotta dal tetto di spesa (~$1
+  per run), quindi lo scraper ha raccolto **fino a 10 commenti per post**, non i 10 più
+  votati dell'intero thread. I commenti NON sono ordinati dallo scraper: sono un **campione**
+  dei commenti disponibili, non i top assoluti.
+- **Analisi:** il dataset è stato letto a pagine da 90 item (6 pagine: 90+90+90+90+90+76 = 526)
+  e salvato in `reddit-raw/analysis/pagina-01.md … pagina-06.md`. Il campione effettivamente
+  letto e classificato è l'intero dataset (526 item).
 
-Questo re-run era stato richiesto specificamente per sostituire le stime con
-frequenze contate, ampliando la raccolta Reddit tramite lo scraper Apify con la
-configurazione fissa. **La raccolta Apify non è stata possibile in questa
-sessione.** Dettaglio tecnico di ciò che è stato tentato, in ordine:
+### Conteggio per profilo (somma delle 6 pagine)
+| Profilo | Voci | % su 526 |
+|---|---|---|
+| **Figlia/o che si prepara (genitore vivo) — profilo Dana** | **~107** | **~20%** |
+| Post-lutto (genitore già morto) | ~85 | ~16% |
+| Altro / fuori tema | ~334 | ~64% |
 
-1. **Strumenti MCP `mcp__apify-reddit-scraper__*` — NON disponibili.** Il server
-   MCP `apify-reddit-scraper` risulta "connesso", ma non espone alcun tool
-   chiamabile in questa sessione. Tentate e fallite tutte e tre le chiamate:
-   - `harshmaur--reddit-scraper` → *"No such tool available ... server connected but does not offer this tool here"*
-   - `get-actor-run` → stesso errore
-   - `call-actor` → stesso errore
-   Lo scraper con la configurazione fissa (10 searchTerms, searchPosts+comments,
-   maxPostsCount 20, maxCommentsPerPost 10, tetto spesa $8, waitSecs 45) **non è
-   mai partito**: nessun run creato, **costo/run = $0**, nessun runId.
-2. **API Apify via Bash — NON autenticabile.** Nessuna variabile `APIFY_TOKEN`
-   nell'ambiente; `GET https://api.apify.com/v2/acts` → **HTTP 401**. Impossibile
-   lanciare o leggere dataset via `curl`.
-3. **Agent Reach — NON installato.** `agent-reach: command not found`.
-4. **Reddit diretto — bloccato dal proxy.** `www.reddit.com/search.json` → **403**;
-   `old.reddit.com` → **CONNECT tunnel failed, 403**; `api.pullpush.io` (mirror) →
-   irraggiungibile (000); WebFetch su `reddit.com` → *"unable to fetch"*.
+- Per pagina (Dana / post-lutto / altro): P1 27/0/63 · P2 21/41/28 · P3 12/25/53 ·
+  P4 7/8/75 · P5 31/7/52 · P6 9/4/63.
+- **Il 64% del dataset è fuori tema.** Il rumore principale viene dalle keyword su
+  "password/bank access/privacy", che pescano un tema **inverso** (genitori che
+  controllano o svuotano il conto di figli adolescenti/giovani adulti), più thread di
+  valutazione di oggetti ereditati, prestiti studenteschi e logistica Medicaid. Questi
+  item sono stati scartati dai conteggi di desiderio.
 
-**Conseguenza.** In questo run **non è stato raccolto alcun post o commento Reddit**
-(0 post, 0 commenti per tutte e 10 le keyword). La cartella
-`projects/family-handover-folder-figli/reddit-raw/` è stata creata ma è **vuota**:
-nessun dataset grezzo da salvare, perché nessun run è stato prodotto. Non sono stati
-inventati conteggi, citazioni o percentuali "contate".
-
-### Cosa è stato fatto invece (validazione su fonti accessibili)
-
-È stato eseguito un nuovo passaggio mirato di WebSearch su fonti accessibili
-(blog estate-planning, financial advisor, colonne di news locali, forum/recensioni
-indicizzate, pagine prodotto Etsy/Walmart/Trustpilot). Risultato: **i 5 desideri del
-run precedente sono stati ri-confermati e nessun sesto nucleo è emerso** — di nuovo
-saturazione tematica rapida. Un paio di nuove formulazioni verbatim utili sono state
-aggiunte sotto (opener "Where do you keep important documents—and how would I find
-them?" e "It doesn't all have to be done overnight"), ma rafforzano i desideri
-esistenti, non ne aprono di nuovi.
-
-### Stato delle percentuali
-
-Le **percentuali restano STIME** identiche al run precedente: senza i conteggi
-Reddit dello scraper non è stato possibile sostituirle con frequenze censite.
-Questo era l'unico vero deliverable aggiuntivo atteso dal re-run, e **resta aperto**.
-
-### Quota profilo "Dana" (figlia in preparazione, genitore ancora vivo)
-
-Il filtro richiesto (distinguere i post di figlie che si preparano con calma dai post
-di persone **già in lutto**) **non è calcolabile su Reddit in questo run**, perché
-nessun post Reddit è stato recuperato (0/0). Dichiarazione onesta sul trattamento:
-
-- Sulla popolazione Reddit prevista dalle 10 keyword, 3 keyword ("what to do when a
-  parent dies", "parent passed away no passwords", "how to help elderly parent plan
-  for death") pescano strutturalmente molti **post post-lutto / fuori profilo Dana**;
-  5 keyword ("parents won't talk about finances", "help my parents get organized",
-  "aging parent financial organization", "wish I had organized my parents documents",
-  "dad won't talk about his will") sono **centrate sul profilo Dana**; 2 sono miste.
-  **Questa è una previsione di design, non una misura**: andrà verificata quando lo
-  scraper sarà eseguibile, etichettando ogni post come `in-profilo` / `post-lutto` /
-  `altro` e riportando la quota reale.
-- Le **fonti accessibili** usate in questo run sono invece in prevalenza
-  **on-profilo Dana** (blog "how to talk to your aging parents", advisor su cosa
-  dovrebbero sapere i figli adulti, recensioni di organizer comprati in prevenzione):
-  è su queste che poggiano i desideri. Le fonti "post-lutto" (guide "what to do when a
-  parent dies", storie di esecutori) sono state usate **solo** per documentare il
-  *dolore futuro concreto* dietro i desideri #1 e #3 (ciò che Dana teme), non come
-  voce diretta di Dana.
-
-### Conteggio fonti per piattaforma (run 2026-10-16)
-
-| Piattaforma | Stato accesso | Post/commenti o voci raccolte | Valore per questa categoria |
-|---|---|---|---|
-| **Reddit via Apify (scraper fisso)** | **FALLITO — tool non offerto / $0 / 0 run** | **0 post, 0 commenti** | Alto (atteso), ma non ottenuto |
-| Reddit diretto (www/old/pullpush/WebFetch) | **Bloccato** (403 / 000 / unable to fetch) | 0 | — |
-| Agent Reach | **Non installato** | 0 | — |
-| Blog estate-planning / advisor (Greenbush, Commerce Bank, Synchrony, Savant, Kiplinger, Next Avenue) | OK via WebSearch | ~10-12 | Alto per #2 e #3 |
-| Colonne news / "questions to ask your parents" (East Idaho, Democrat Chronicle, Not Too Late Substack) | OK via snippet | ~5 | Medio-alto per #2 |
-| Guide "track down accounts / tasks when a parent dies" (Elayne, Adams Brown, Fidelity CA, Fox Business) | OK via snippet | ~6 | Alto per #3 (dolore futuro) |
-| Recensioni Etsy (MadeSimpleUS), Walmart, Trustpilot (Estate Organiser), Goodreads (Get It Together) | OK via snippet | ~8 | Alto per #1 e #4 |
-| Blog/Substack personali ("digital afterlife", password lockout) | OK | ~4 | Alto per #1/#3 (storie reali) |
-| Dati survey citati (Haven Life 80%, Grow Therapy 43%) | OK (dal run precedente) | 2 | Supporto quantitativo trasversale |
-
-**Voci distinte effettivamente osservate (cumulate con il run precedente): ~70-95.**
-Lontane dal target 700-1000+ del prompt, per i blocchi sopra. **Piattaforma più
-preziosa ma ancora inaccessibile: Reddit** — resta la raccomandazione #1 da sbloccare.
+### Limiti dichiarati
+1. **Campione, non censimento del mercato.** 49 post + ~477 commenti da ~10 keyword su
+   r/AgingParents, r/personalfinance, r/Estates e affini. Lontano dal target ideale del
+   prompt (700-1000+ voci distinte di clienti): le voci DISTINTE utili del profilo Dana
+   sono ~107, di cui 79 mappabili con certezza a uno dei 5 desideri.
+2. **Commenti non ordinati per voto dallo scraper** (vedi sopra): i voti riportati sono
+   reali ma il campione per thread può non contenere il commento più votato.
+3. **Rumore keyword** su password/banca (tema inverso genitore→figlio) già filtrato.
+4. **Il dataset può essere cresciuto dopo la chiusura del run** (lo scraper può aver
+   continuato a scrivere dopo lo stop per tetto di spesa): i 526 item sono lo stato letto
+   in analisi.
+5. **Profilo misto post-lutto.** Molte voci forti (soprattutto su D1 e D3) vengono da chi
+   è GIÀ in lutto: non sono voce diretta di Dana, ma documentano il **dolore futuro
+   concreto** che Dana teme. Sono usate come evidenza di contesto, non conteggiate nei
+   totali del profilo Dana.
 
 ---
 
-## I 5 DESIDERI SUPERFICIALI PRIMARI
+## 2. CONTEGGI PER DESIDERIO (profilo Dana — CONTEGGI, non stime)
 
-Tutti e cinque superano il test fondamentale: sono **risultati che Dana ottiene
-USANDO il kit** (sapere dove è tutto, aprire il discorso, non annegare nella
-burocrazia, dormire tranquilla, essere pronta senza invadere), non caratteristiche
-del prodotto. **Invariati e ri-validati rispetto al run precedente.**
+Base: le **79 voci del profilo Dana** (figlia che si prepara, genitore vivo) che è stato
+possibile mappare con certezza a uno dei 5 desideri, sommando le tabelle delle 6 pagine.
+Le percentuali sono calcolate su questo totale di 79. **Sono conteggi reali di item
+classificati, non stime.** (Le restanti ~28 voci Dana sono consigli pratici generici o
+conferme/ringraziamenti non attribuibili a un singolo desiderio.)
+
+| Desiderio | P1 | P2 | P3 | P4 | P5 | P6 | **Tot** | **% su 79** |
+|---|---|---|---|---|---|---|---|---|
+| **D1** sapere dove trovare tutto | 11 | 7 | 3 | 1 | 7 | 4 | **33** | **42%** |
+| **D2** sollevare il discorso | 7 | 0 | 5 | 1 | 3 | 0 | **16** | **20%** |
+| **D3** lutto senza burocrazia | 4 | 1 | 0 | 1 | 2 | 2 | **10** | **13%** |
+| **D4** togliere l'ansia di sottofondo | 1 | 0 | 1 | 4 | 3 | 1 | **10** | **13%** |
+| **D5** pronta senza prendere il controllo | 2 | 3 | 2 | 0 | 1 | 2 | **10** | **13%** |
+
+**Esito:** i 5 desideri di partenza sono **confermati**. D1 è nettamente dominante (42%,
+il doppio del secondo). D2 è solido secondo. D3/D4/D5 sono a pari merito (~13% ciascuno).
+
+**Avvertenza sul conteggio di D4.** Dei 10 item etichettati D4, solo ~3 sono "ansia di
+sottofondo" pura (P1#45, P3#89, P6#20); gli altri ~7 (P4#74/76/77/79, P5#6/37/40) parlano
+in realtà di **paura di dover mantenere economicamente genitori impreparati** — che è il
+candidato nuovo ND-A più sotto. D4 come desiderio emotivo puro è quindi più sottile di
+quanto il 13% suggerisca; una parte del suo peso appartiene a ND-A.
 
 ---
 
-### Desiderio Superficiale #1
+## 3. I 5 DESIDERI SUPERFICIALI PRIMARI
+
+Tutti e cinque superano il test fondamentale: sono **risultati che Dana ottiene USANDO il
+kit**, non caratteristiche del prodotto. Per ogni desiderio: 3 driver emotivi (15 totali) e
+3 citazioni verbatim con pagina di origine e voti. Le % dei driver sono una **ripartizione
+dei conteggi di quel desiderio** fra i tre driver (basata sul contenuto delle voci), non
+stime indipendenti.
+
+---
+
+### Desiderio Superficiale #1 — 33 voci (42%) — DOMINANTE
 **"Voglio sapere dove trovare tutto se succede qualcosa."**
 
-Il risultato n.1 e più trasversale: un unico posto dove stanno conti, password,
-documenti e contatti, così che un'emergenza non diventi una caccia al tesoro.
+Un unico posto dove stanno conti, password, documenti e contatti, così che un'emergenza non
+diventi una caccia al tesoro. È il risultato più trasversale e più votato del dataset (i due
+post con più voti in assoluto, 978 e 583, sono D1).
 
-**Piattaforme viste:** recensioni Etsy (MadeSimpleUS), Walmart ("Putting Things In
-Order"), recensioni Nokbox (Loox), blog "digital afterlife"
-(Substack/CBC/HumbleDollar), articoli estate-planning (Kiplinger, Trustworthy,
-Greenbush Financial), executive summary (query reattive notturne).
+**Piattaforme viste:** Reddit (r/AgingParents, r/personalfinance, r/Estates) — post e
+commenti su binder/nokbox/Google Drive, dove sono tenute le carte, password scritte, POA e
+accessi dati ai figli.
 
-**Citazioni testuali (EN):**
-- *"I have a sense of peace knowing everything is organized and in one place for my family for when the day comes."* — recensione Etsy (MadeSimpleUS)
-- *"I have been handling my father's estate without ANY of this information."* — recensione Nokbox (widget Loox)
-- *"It took months to gain and regain control of my parents' online accounts... much of this could have been avoided with proper password management."* — blog personale (Substack "digital afterlife")
+**Citazioni (EN, con pagina e voti):**
+- *"most of the 'documents you need' lists online are just alphabetical or random. They treat a subscription login the same as a will."* — P5, post, 978 voti
+- *"one afternoon of her setting something up would have saved us from this nightmare right now."* — P6, post, 304 voti
+- *"We go to mom's safe, no papers. WTF?... we had to break into her utility accounts (guessed her passwords based on a sticky note). Make this easy on your kids - please."* — P2, post, 121 voti
 
 **Driver emotivi (3):**
-- Mi sento **in panico / impreparata** quando immagino di dover cercare a tappeto conti e password mentre il genitore è in ospedale e non c'è tempo. *(stima ~45%)*
-- Mi sento **sollevata** quando penso che esista un solo posto dove guardare, invece di decine di cassetti, email e banche da ricostruire. *(stima ~35%)*
-- Mi sento **esposta / vulnerabile** perché so che senza le password "le istituzioni finanziarie non ti danno nessuna informazione" e resterei bloccata fuori da tutto. *(stima ~20%)*
+- Mi sento **in panico / impreparata** quando immagino di dover cercare a tappeto conti e
+  password mentre il genitore è in ospedale e non c'è tempo. *(~50% delle 33 voci ≈ 21% del totale)*
+- Mi sento **sollevata** quando penso che esista un solo posto dove guardare, invece di
+  decine di cassetti, email e banche da ricostruire. *(~30% delle voci di D1)*
+- Mi sento **esposta / bloccata fuori** perché senza le password le istituzioni non danno
+  informazioni e resterei chiusa fuori da tutto. *(~20% delle voci di D1)*
 
 ---
 
-### Desiderio Superficiale #2
+### Desiderio Superficiale #2 — 16 voci (20%) — SECONDO FORTE
 **"Voglio sollevare il discorso senza offenderli o litigare."**
 
-Il blocco di Dana non è informativo, è **relazionale**: sa cosa le servirebbe
-sapere, ma non come chiederlo senza che suoni come "stai invecchiando/stai morendo".
-Il risultato desiderato è una conversazione che avviene con dolcezza.
+Il blocco di Dana è **relazionale**: sa cosa le servirebbe sapere, ma non come chiederlo
+senza che suoni come "stai invecchiando/stai morendo". Il risultato è una conversazione che
+avviene con dolcezza. Fortemente presente nei thread "parent won't talk / won't get organized".
 
-**Piattaforme viste:** blog "how to talk to your parents about estate planning"
-(Kiplinger, Next Avenue, Commerce Bank, Synchrony, Savant Wealth, Offit Kurman,
-LegalZoom), colonne "questions to ask your parents" (East Idaho, Democrat Chronicle,
-Not Too Late Substack), executive summary, forum caregiver.
+**Piattaforme viste:** Reddit (r/AgingParents) — thread su genitori che rifiutano di parlarne,
+tecniche per aprire il discorso, framing accettabili.
 
-**Citazioni testuali (EN):**
-- *"Where do you keep important documents—and how would I find them?"* — opener suggerito, colonna news locale (East Idaho / Democrat Chronicle)
-- *"Make clear that your aim is to carry out their wishes, not to get a share or take control. Don't undermine their wishes or try to take control."* — St Law Firm
-- *"I mean, you're my parents, but I was wondering, would you look at this?"* — citazione VoC riportata nell'executive summary
+**Citazioni (EN, con pagina e voti):**
+- *"it was not easy to convince my mom that I needed to be able to handle her finances and bill paying."* — P1, commento, 255 voti
+- *"I wonder if it would help to frame it as 'don't let the government screw you over' to encourage him to get a will."* — P5, commento, 65 voti
+- *"My dad is 78 and still won't talk about it."* — P3, commento, 5 voti
 
 **Driver emotivi (3):**
-- Mi sento **in colpa / a disagio** perché temo che chiedere suoni come un'accusa sull'età o la salute del genitore. *(stima ~45%)*
-- Mi sento **bloccata / rimandataria** quando so che dovrei parlarne ma non trovo mai le parole giuste e rinvio ancora. *(stima ~35%)*
-- Mi sento **imbarazzata** all'idea di essere io "quella burocratica" che tira fuori moduli e documenti in un momento familiare. *(stima ~20%)*
+- Mi sento **bloccata / impotente** quando so che dovrei parlarne ma il genitore rifiuta e
+  rinvio ancora. *(~50% delle 16 voci)*
+- Mi sento **in colpa / a disagio** perché temo che chiedere suoni come un'accusa sull'età o
+  la salute del genitore. *(~30%)*
+- Mi sento **sollevata** quando trovo un modo "dolce" di introdurlo (un'occasione, un nipote
+  in arrivo, un lutto altrui, una frase pronta). *(~20%)*
 
 ---
 
-### Desiderio Superficiale #3
+### Desiderio Superficiale #3 — 10 voci (13%)
 **"Voglio vivere il lutto senza restare intrappolata nella burocrazia."**
 
-Il risultato è evitare il futuro-dolore ben documentato: conti congelati, mesi di
-probate, certificati di morte a dozzine, caccia agli account — tutto mentre si sta
-elaborando una perdita.
+Evitare il futuro-dolore ben documentato: conti congelati, mesi di probate, certificati di
+morte a dozzine, caccia agli account — tutto mentre si elabora una perdita. **Nota:** il grosso
+dell'evidenza di questo desiderio viene dal profilo post-lutto (la paura concreta che Dana
+proietta); le 10 voci conteggiate sono però solo profilo Dana-che-si-prepara.
 
-**Piattaforme viste:** guide "what to do when a parent dies / track down accounts"
-(Elayne, Adams Brown CPA, Fidelity CA, Fox Business, Protective, Darrow, Fatherly),
-blog probate/studi legali (Pierce Law, Hugill & Ip), blog "digital afterlife"
-(CBC, Substack), forum caregivers.com.
+**Piattaforme viste:** Reddit (r/Estates, r/AgingParents) — probate, death certificates, tempi,
+beneficiari per evitare il probate, esecutori sopraffatti.
 
-**Citazioni testuali (EN):**
-- *"Funds stay locked until a court grants the executor authority — typically 3 to 6 months or longer, depending on probate complexity."* — guida probate (Hugill & Ip / sintesi guide US)
-- *"In one day, the mom lost online access to credit cards, utilities, bank accounts, retirement accounts, and more... she spent three months navigating bureaucracy."* — storia personale (CBC "Out In The Open" / blog digital afterlife)
-- *"It doesn't all have to be done overnight."* — testimonianza personale (figlia che ha impiegato un intero anno fiscale a chiudere conti sconosciuti, via guida "financial tasks when a parent dies")
+**Citazioni (EN, con pagina e voti):**
+- *"It will consume you if you let it... Neither of you deserve the burden."* — P6, commento, 33 voti (profilo Dana)
+- *"make sure his accounts have named beneficiaries. Not everything has to go through probate."* — P5, commento, 25 voti (profilo Dana)
+- *"I spent the first three months completely lost, Googling everything at midnight, and I made almost every mistake you can make."* — P3, post, 42 voti (profilo post-lutto, come dolore futuro)
 
 **Driver emotivi (3):**
-- Mi sento **sopraffatta / in affanno** all'idea di dover fare l'esecutrice senza sapere da dove si comincia, proprio nei giorni più duri. *(stima ~45%)*
-- Mi sento **in trappola** quando penso ai conti congelati e alle bollette insolute mentre aspetto che un tribunale mi dia l'autorità. *(stima ~30%)*
-- Mi sento **derubata del tempo del lutto**, perché la burocrazia prende lo spazio che vorrei dare al dolore e alla famiglia. *(stima ~25%)*
+- Mi sento **sopraffatta / in affanno** all'idea di dover fare l'esecutrice senza sapere da
+  dove si comincia, proprio nei giorni più duri. *(~50% delle 10 voci)*
+- Mi sento **in trappola** quando penso ai conti congelati e ai mesi di probate prima di avere
+  l'autorità. *(~30%)*
+- Mi sento **derubata del tempo del lutto**, perché la burocrazia prende lo spazio che vorrei
+  dare al dolore. *(~20%)*
 
 ---
 
-### Desiderio Superficiale #4
+### Desiderio Superficiale #4 — 10 voci (13%) — ma vedi avvertenza
 **"Voglio smettere di avere quell'ansia di sottofondo."**
 
-Il risultato emotivo puro: poter dire "ho tutto sotto controllo", dormire, togliere
-dalla testa il pensiero fisso del "e se succedesse ora?".
+Il risultato emotivo puro: poter dire "ho tutto sotto controllo", dormire, togliere dalla testa
+il pensiero fisso del "e se succedesse ora?". **Avvertenza (vedi §2):** solo ~3 delle 10 voci
+sono ansia pura; ~7 sono in realtà paura di dover MANTENERE i genitori impreparati (candidato
+ND-A). Come desiderio emotivo autonomo, D4 è il più debole dei cinque sui dati reali.
 
-**Piattaforme viste:** recensioni Nokbox (Loox), recensioni Etsy (MadeSimpleUS),
-Goodreads ("Get It Together"), guida canadese Heritage ("Before It's Too Late"), blog
-stress caregiver (Grow Therapy, Tanner), survey (Haven Life, Grow Therapy), executive
-summary (ricerca "2 di notte").
+**Piattaforme viste:** Reddit (r/AgingParents) — stress del caregiver, emergenze mediche in
+corso, paura economica.
 
-**Citazioni testuali (EN):**
-- *"I love the peace of mind this is giving me."* — recensione Nokbox (widget Loox)
-- *"You will be able to enjoy the peace of mind knowing that this important task is taken care of."* — guida organizer (Heritage, "Before It's Too Late")
-- *"43% of adult children report chronic stress when caring for aging parents."* — Grow Therapy (dato di supporto al vissuto d'ansia diffuso)
+**Citazioni (EN, con pagina e voti):**
+- *"it feels like I'm trying to learn all of this while dealing with the actual medical situation too."* — P6, commento, 207 voti (ansia pura)
+- *"Frankly, I am very overwhelmed and my biggest fear is that I help them once and they don't fix their habits."* — P5, post, 110 voti (ansia + confine finanziario)
+- *"less about money and more about reducing stress when everyone is already overwhelmed. Even basic stuff like account access... seems huge."* — P3, commento, 4 voti
 
 **Driver emotivi (3):**
-- Mi sento **in ansia costante / sopraffatta** perché sono già allo stremo tra figli, lavoro e genitori e questo pensiero resta sullo sfondo (80% della sandwich generation si dichiara spesso sopraffatta — Haven Life). *(stima ~45%)*
-- Mi sento **in pace / finalmente leggera** quando so che, qualunque cosa accada, è già tutto scritto in un posto solo. *(stima ~35%)*
-- Mi sento **spaventata di notte** quando mi parte la ricerca da panico ("what to do when a parent dies") e realizzo che non saprei cosa fare. *(stima ~20%)*
+- Mi sento **in ansia costante / sopraffatta** perché sono già allo stremo tra figli, lavoro e
+  genitori e questo pensiero resta sullo sfondo. *(~50% delle 10 voci)*
+- Mi sento **spaventata nei momenti critici** (ricovero, emergenza medica) quando realizzo che
+  non saprei cosa fare. *(~30%)*
+- Mi sento **in pace / finalmente leggera** quando so che, qualunque cosa accada, è già tutto
+  scritto in un posto solo. *(~20%)*
 
 ---
 
-### Desiderio Superficiale #5
+### Desiderio Superficiale #5 — 10 voci (13%)
 **"Voglio essere pronta senza prendere il controllo dei miei genitori."**
 
-Chiave per la psicologia del regalo: Dana non vuole "gestire" la vita del genitore,
-vuole solo essere pronta. Il risultato è preservare l'indipendenza e la dignità del
-genitore avendo comunque le informazioni "nel caso". È ciò che distingue Dana da un
-figlio che prende in mano la situazione.
+Il permesso psicologico del regalo: Dana non vuole "gestire" la vita del genitore, vuole solo
+essere pronta. Preservare indipendenza e dignità del genitore avendo comunque le informazioni
+"nel caso". È ciò che distingue Dana da un figlio che prende in mano la situazione.
 
-**Piattaforme viste:** AARP, Griswold Care, Lifeline, Greenbush Financial ("locate,
-don't hand over"), Savant Wealth ("recognize their independence, privacy and
-autonomy"), forum caregivers.com, executive summary, blog regali per anziani.
+**Piattaforme viste:** Reddit (r/AgingParents, r/personalfinance) — thread su POA/accessi senza
+invadere, "it's not my money", tempismo ("troppo presto").
 
-**Citazioni testuali (EN):**
-- *"Some parents may view their children's moves as 'takeover' attempts and experience their help as a loss of independence."* — AARP
-- *"Be respectful, and recognize their independence, privacy and autonomy. You don't need to cover everything at once."* — Savant Wealth / sintesi advisor
-- *"I wasn't trying to take over my dad's life. I just wanted to be ready."* — hook VoC riportato nell'executive summary
+**Citazioni (EN, con pagina e voti):**
+- *"it's not my god damn money. My parents have right to spend it however they choose... this feeling like their money is my own creates weird conflicts."* — P3, commento, 41 voti
+- *"We're not trying to take control—we just don't want to be completely lost when something happens."* — P1, post, 10 voti
+- *"if they are 65 and 66 and still working and independent, you may be a little early."* — P1, commento, 6 voti
 
 **Driver emotivi (3):**
-- Mi sento **in colpa all'idea di invadere** perché voglio rispettare l'autonomia dei miei genitori, non trattarli come se non fossero più capaci. *(stima ~40%)*
-- Mi sento **tranquilla / rispettosa** quando è il genitore a compilare, con i propri tempi e nella sua voce, e io sono solo pronta "nel caso". *(stima ~35%)*
-- Mi sento **sotto pressione come figlia responsabile**, spesso l'unica o la più coinvolta, e temo di sbagliare prendendo decisioni che non spettano a me. *(stima ~25%)*
+- Mi sento **in colpa all'idea di invadere** perché voglio rispettare l'autonomia dei miei
+  genitori, non trattarli come se non fossero più capaci. *(~45% delle 10 voci)*
+- Mi sento **tranquilla / rispettosa** quando è il genitore a compilare, con i propri tempi e
+  nella sua voce, e io sono solo pronta "nel caso". *(~35%)*
+- Mi sento **sotto pressione come figlia responsabile**, spesso l'unica o la più coinvolta, e
+  temo di sbagliare prendendo decisioni che non spettano a me. *(~20%)*
+
+---
+
+## 4. NUOVI DESIDERI / CANDIDATI EMERSI DAI DATI
+
+Soglia di promozione a desiderio primario: ~15 voci rilevanti del profilo Dana. **Nessuno dei
+candidati raggiunge la soglia: restano candidati, non desideri primari.**
+
+### ND-A — "Non voglio essere prosciugata mantenendo genitori che non hanno pianificato." — ~10 voci — CANDIDATO PIÙ FORTE
+Tema con voti altissimi (121, 128, 165, 110, 92). Oggi "ruba" peso a D4 (vedi §2/§3-D4).
+- Voci: P4 #74/#76/#77/#79 (4), P5 #6/#37/#40 + #23/#24/#26 NUOVO (6).
+- Citazione: *"People need to understand they are not responsible for funding their parents' golden years."* — P5, 19 voti; e *"I'm terrified that I'll be financially responsible for their lives quite soon."* — P5, 67 voti.
+- **Status:** desiderio semi-autonomo, oggi assorbito dentro D4. È il candidato con più
+  energia (voti) ma sotto soglia e in parziale tensione con l'angolo "regalo di cura" (è più
+  difensivo verso il genitore). Da monitorare, non da promuovere ora.
+
+### ND-B — "Voglio che la delega (POA) che ho preparato funzioni davvero quando serve." — ~4 voci — CANDIDATO
+- Voci: P6 #30/#31/#32/#36 (28, 11, 7, 3 voti).
+- Citazione: *"The banks don't need to honour a POA, which was shocking to me."* — P6, 28 voti.
+- **Status:** driver di D1/D5 più che desiderio autonomo (riguarda l'efficacia della
+  preparazione, non il prepararsi). Insight prezioso per il copy: anche chi "ha fatto tutto"
+  scopre ostacoli bancari — rafforza il valore di un sistema che anticipa accessi e beneficiari.
+
+### ND-C — "Voglio proteggere il genitore da frodi/abuso finanziario (POA predatorio)." — ~4-6 voci — CANDIDATO
+- Voci: P1 #37/#70, P2 #77, P3 #12/#63.
+- Citazione: *"There is so much fraud against older people through their credit cards."* — P1, 255 voti; *"They claim the POA/caregiver assisted her in making new documents and beneficiary designations in her last days."* — P2, 24 voti.
+- **Status:** driver di D1/D5. Tema emotivamente caldo ma sotto soglia e spesso da profili
+  osservatori/post-lutto.
+
+### ND-D — "Non voglio che un fratello nasconda, sprechi o si litighi l'eredità." — ~4-6 voci — CANDIDATO
+- Voci: P2 #77, P3 #32/#1, P4 #7.
+- Citazione: *"It seems like at best my brother is doing a bad job as executor, and at worse some kind of fraud is going on."* — P4, 14 voti.
+- **Status:** driver secondario dentro D1/D3 (un solo punto di riferimento condiviso evita i
+  conflitti). Coerente con l'executive summary ("three siblings, one answer") ma sotto soglia.
+
+### ND-E — "Voglio creare un trust per risparmiare il probate ai miei figli." — ~2 voci — CANDIDATO DEBOLE
+- Voci: P2 #70/#71.
+- **Status:** motivazione "a monte" (Barb più che Dana); troppo poche voci.
+
+### Fuori profilo (segnalato, non conteggiato)
+Forte presenza del tema **"genitore che PREPARA gli accessi per i figli"** (r/OverSeventy,
+spreadsheet annuali, "Upon Death file") e di un tema prodotto **"un sistema unico per i
+documenti di famiglia"** da un padre di famiglia giovane (P5 #79, 136 voti): confermano la
+domanda del prodotto, ma sono la voce del genitore/di un altro profilo, non di Dana.
+
+---
+
+## 5. CONFRONTO CON IL RUN PRECEDENTE
+
+**Cosa resta:**
+- I **5 desideri** sono invariati e confermati. Nessun sesto nucleo supera la soglia.
+- Il blocco relazionale (D2 + D5) resta centrale; D1 resta il desiderio n.1.
+- Il linguaggio "one place / peace of mind / I just wanted to be ready / without taking over"
+  è confermato verbatim anche su Reddit.
+
+**Cosa cambia:**
+- **Le percentuali ora sono CONTEGGI, non stime.** Il run precedente stimava D1~45% e D2/D3/D4/D5
+  distribuiti; i conteggi reali danno **D1 42%, D2 20%, D3/D4/D5 13% ciascuno**. D1 resta
+  dominante, ma D2 (relazionale) è un secondo più netto del previsto, e D3/D4/D5 sono più
+  bassi/pari di quanto le stime suggerissero.
+- **D4 ridimensionato:** come ansia pura è il più debole (solo ~3 voci pure); gran parte del suo
+  peso è in realtà la paura economica di mantenere i genitori (nuovo candidato ND-A).
+- **Dati Reddit ora esistono davvero.** Il run precedente aveva 0 post Reddit (scraper non
+  eseguibile); questo run ha un dataset reale di 526 item (`R4foHL2efKAGfemUG`), con quota
+  profilo Dana ~20% misurata, non più solo prevista.
+- **Nuovi candidati identificati e dimensionati** (ND-A…ND-E), assenti o solo accennati prima.
+
+---
+
+## 6. RACCOMANDAZIONE PER L'ORCHESTRATORE (il Checkpoint 1 è dell'utente — NON scelgo io)
+
+**Più forte sui dati reali:** **D1 "Voglio sapere dove trovare tutto se succede qualcosa"** —
+42% delle voci Dana, il doppio del secondo, e i due post più votati in assoluto. È il desiderio
+con la base empirica più solida e il più vicino al prodotto (il kit È letteralmente "un posto
+solo").
+
+**Secondo candidato:** **D2 "sollevare il discorso senza litigare"** (20%) — è il vero attrito
+all'acquisto-regalo e colpisce esattamente i due bonus del bundle (Dear Mom/Dad Letter,
+Conversation Starter Card). Angolo forte per il momento del regalo.
+
+**Rischi di scelta:**
+- **D1** è potente ma "pratico/razionale": rischia di scivolare verso il framing competitor
+  (checklist/burocrazia) che l'executive summary vuole evitare. Va vestito col tono "regalo di
+  cura", non "preparati alla morte".
+- **D2** è emotivamente giusto per Dana ma più difficile da rendere in un hook breve (è una
+  dinamica relazionale, non un dolore immediato); funziona meglio in advertorial long-form.
+- **D3** è molto evidenziato ma soprattutto da voci **post-lutto**: usarlo come angolo primario
+  rischia di parlare a chi è già in crisi (profilo diverso da Dana-regalo) e di suonare "da
+  fine vita".
+- **D4** da solo è debole sui dati; meglio come beneficio di chiusura che come angolo portante.
+- **ND-A** (non mantenere genitori impreparati) ha l'energia più alta in voti ma è **difensivo
+  verso il genitore**: in tensione con l'angolo "gesto d'amore". Da non usare come angolo
+  principale per il bundle-regalo.
+
+**Sintesi per il checkpoint:** D1 come angolo portante, D2 come angolo relazionale per il
+formato advertorial; D5 come "permesso" trasversale da tenere in tutto il copy; D3/D4 come
+rinforzi, non come angoli primari.
 
 ---
 
 ## PUNTO DI VERIFICA / CONTROLLO QUALITÀ
-
-- **5 desideri primari** totali. ✓
-- **Esattamente 3 driver emotivi per desiderio = 15 voci totali.** ✓ (3+3+3+3+3)
+- **5 desideri primari.** ✓
+- **Esattamente 3 driver emotivi per desiderio = 15 voci.** ✓
 - **I desideri sono risultati, non caratteristiche.** ✓
-- **Citazioni incluse** per ogni desiderio (3 ciascuno, in EN con tipo di fonte). ✓
-- **Formato "Voglio [risultato]"**, max ~10 parole, un solo risultato, senza "e/o". ✓
-- **Formato driver "Mi sento [emozione] perché/quando [situazione]" + % stima.** ✓
-
----
-
-## DIFFERENZE RISPETTO AL RUN PRECEDENTE (run 1 → run 2026-10-16)
-
-- **Nessun cambiamento ai 5 desideri né ai 15 driver né alle percentuali.** Il
-  secondo passaggio su fonti accessibili ha ri-confermato gli stessi 5 nuclei, con
-  saturazione rapida; nessun sesto desiderio emerso.
-- **Lo scraper Apify — motivo del re-run — NON è stato eseguibile** (tool MCP non
-  offerto, nessun token per l'API, Agent Reach assente, Reddit diretto 403).
-  **0 post / 0 commenti Reddit raccolti; $0 di spesa; nessun run creato.** Il run
-  precedente era già senza dati Reddit diretti: su questo fronte **la situazione è
-  invariata**, l'ampliamento atteso non è avvenuto.
-- **Citazioni aggiornate/aggiunte** (rafforzano desideri esistenti, non ne creano di
-  nuovi): opener "Where do you keep important documents—and how would I find them?"
-  (#2), "It doesn't all have to be done overnight" (#3), guida Heritage "peace of
-  mind" (#4), Savant "recognize their independence" e Greenbush "locate, don't hand
-  over" (#5).
-- **Fonti nuove toccate** rispetto al run 1: Greenbush Financial, Commerce Bank,
-  Synchrony, Savant Wealth, East Idaho News / Democrat Chronicle, Not Too Late
-  Substack, Elayne, Adams Brown CPA, Fidelity CA, Walmart listing, Goodreads "Get It
-  Together", guida canadese Heritage.
-- **La quota profilo Dana su Reddit resta non misurata** (0 post recuperati); resta
-  solo la previsione di design sulle 10 keyword (vedi nota metodologica).
-
----
-
-## OSSERVAZIONI STRATEGICHE PER LE FASI SUCCESSIVE
-
-- **Il blocco dominante è relazionale (#2 + #5), non pratico.** Dana sa cosa serve;
-  non sa come chiederlo/regalarlo senza offendere. I due bonus del bundle (Dear
-  Mom/Dad Starter Letter, Conversation Starter Card) colpiscono esattamente qui.
-- **#1 e #3 sono il "dolore futuro" concreto** che giustifica razionalmente
-  l'acquisto; #4 è il beneficio emotivo che chiude; #5 è il permesso psicologico
-  che rende l'acquisto compatibile con l'identità di "figlia che rispetta".
-- **Conflitto tra fratelli** resta un driver secondario dentro #1/#3/#4, non un
-  sesto desiderio a sé.
-- **Linguaggio da riusare nel copy (EN, verbatim dal mercato):** "one place",
-  "peace of mind", "I didn't know where anything was", "I just wanted to be ready",
-  "without taking over", "they aren't going to give you any information",
-  "months, not days", "where do you keep important documents—and how would I find
-  them?", "locate, don't hand over", "it doesn't all have to be done overnight".
-- **Linguaggio da EVITARE:** "death", "end of life", "when I'm gone", "funeral".
-  Framing vincente: "just in case / an ordinary Tuesday".
-
----
-
-## RACCOMANDAZIONE DI VALIDAZIONE (per l'orchestratore) — PRIORITÀ ALTA
-
-L'unico deliverable che il re-run doveva aggiungere (frequenze contate da Reddit)
-**resta aperto** perché lo scraper non era eseguibile. Prima di scalare budget:
-
-1. **Sbloccare l'accesso Apify**: verificare che il server MCP `apify-reddit-scraper`
-   esponga davvero i tool (`harshmaur--reddit-scraper`, `get-actor-run`,
-   `get-dataset-items`) a questo agente, **oppure** fornire un `APIFY_TOKEN`
-   nell'ambiente così da poter lanciare l'actor via API. In questa sessione nessuna
-   delle due condizioni era soddisfatta.
-2. Ri-eseguire lo scraper con la configurazione fissa, salvare il grezzo in
-   `reddit-raw/`, etichettare ogni post `in-profilo Dana` / `post-lutto` / `altro` e
-   **riportare la quota reale**.
-3. Sostituire le percentuali-stima con frequenze contate e ri-ordinare i 5 desideri
-   se i dati Reddit lo impongono.
+- **3 citazioni verbatim (EN) per desiderio, con pagina e voti.** ✓
+- **% dei desideri = conteggi reali** (base 79 voci Dana mappate). ✓
+- **Formato "Voglio [risultato]"**, ≤10 parole, un solo risultato, senza "e/o". ✓
