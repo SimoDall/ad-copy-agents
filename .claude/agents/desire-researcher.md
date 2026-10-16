@@ -225,25 +225,36 @@ Prima di lanciare lo scraper:
   si prepara con il genitore ancora vivo;
 - scrivi le 10 frasi nel manifest del run (punto 4) prima di lanciare.
 
-### 2. Parametri dello scraper
+### 2. Procedura in due passi (budget totale ≤ $1)
+
+Passo A — cerca i post con le 10 keyword, per pertinenza:
 - `searchTerms`: le 10 frasi generate
-- `searchPosts`: true
-- `searchComments`: false (il budget non regge anche i commenti di ricerca)
-- `searchSort`: "top" (solo i post con più voti)
+- `searchPosts`: true, `searchComments`: false
+- `searchSort`: "relevance" (NON "top": con "top" pesca post virali fuori tema)
 - `searchTime`: "year"
-- `maxPostsCount`: 5 (per keyword)
+- `maxPostsCount`: 10 (per keyword)
+- `crawlCommentsPerPost`: false
+- `callOptions.maxTotalChargeUsd`: 0.3
+
+Dal dataset del passo A, per ogni keyword scegli i 5 post con più `upVotes`
+tra quelli pertinenti al tema (scarta i fuori tema anche se molto votati, es.
+post su adolescenti o celebrità). Se una keyword ha meno di 5 post pertinenti,
+prendi quelli che ci sono e dichiaralo.
+
+Passo B — commenti dei post scelti:
+- `startUrls`: gli URL dei post scelti nel passo A (uno per post)
+- `searchPosts`: false, `searchComments`: false
 - `crawlCommentsPerPost`: true, `maxCommentsPerPost`: 10
-- `withinCommunity`: vuoto (ricerca su tutto Reddit)
-- `callOptions.maxTotalChargeUsd`: 1
-- `waitSecs`: 45
+- `callOptions.maxTotalChargeUsd`: 0.7
 
-Con questi parametri il costo atteso è circa $1,1 (50 post più fino a 500
-commenti). Il tetto a $1 può interrompere il run a fine raccolta: in quel caso
-il dataset è parziale, e lo dichiari.
+Lo scraper non ordina i commenti: ne raccoglie fino a 10 per post. Ordinali tu
+per `upVotes` (o `score`) decrescente e tieni i primi 10 di ogni post, dichiarando
+che sono un campione dei commenti raccolti, non i 10 più votati dell'intero
+thread.
 
-Lo scraper non ha un ordinamento dei commenti. Ne raccoglie fino a 10 per post:
-ordinali tu per `upVotes` decrescente (o `score`) e tieni i primi 10 di ogni
-post.
+Il costo atteso è circa $1 (circa 50 post più circa 500 commenti). Il tetto può
+interrompere il passo B a fine raccolta: in quel caso il dataset è parziale, e
+lo dichiari.
 
 ### 3. Esecuzione e campi
 - lancia lo scraper, poi controlla lo stato con `get-actor-run` (`waitSecs: 45`)
