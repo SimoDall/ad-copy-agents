@@ -227,25 +227,45 @@ Prima di lanciare lo scraper:
 
 ### 2. Procedura in due passi (budget totale ≤ $1)
 
-Passo A — cerca i post con le 10 keyword, per pertinenza:
+Lancia lo scraper con i parametri esatti qui sotto, usati nell'ultimo run.
+Non sostituire lo scraper con WebSearch: se lo scraper non è disponibile,
+dichiaralo e fermati sulla parte Reddit, senza inventare post o commenti.
+
+Passo A — cerca i post con le 10 keyword, per pertinenza.
+Strumento: `mcp__apify-reddit-scraper__call-actor` con `actor`:
+`harshmaur/reddit-scraper` e `input`:
 - `searchTerms`: le 10 frasi generate
 - `searchPosts`: true, `searchComments`: false
 - `searchSort`: "relevance" (NON "top": con "top" pesca post virali fuori tema)
 - `searchTime`: "year"
 - `maxPostsCount`: 10 (per keyword)
 - `crawlCommentsPerPost`: false
+- `withinCommunity`: "" (ricerca su tutto Reddit)
+- `includeNSFW`: false
 - `callOptions.maxTotalChargeUsd`: 0.3
+- `waitSecs`: 45
+
+Poi controlla lo stato con `mcp__apify-reddit-scraper__get-actor-run` (`waitSecs`: 45)
+finché non è `SUCCEEDED` o `FAILED`, e leggi il dataset con
+`mcp__apify-reddit-scraper__get-dataset-items`.
 
 Dal dataset del passo A, per ogni keyword scegli i 5 post con più `upVotes`
 tra quelli pertinenti al tema (scarta i fuori tema anche se molto votati, es.
 post su adolescenti o celebrità). Se una keyword ha meno di 5 post pertinenti,
 prendi quelli che ci sono e dichiaralo.
 
-Passo B — commenti dei post scelti:
-- `startUrls`: gli URL dei post scelti nel passo A (uno per post)
+Passo B — commenti dei post scelti.
+Strumento: `mcp__apify-reddit-scraper__call-actor` con `actor`:
+`harshmaur/reddit-scraper` e `input`:
+- `searchTerms`: [] (vuoto)
+- `startUrls`: gli URL dei post scelti nel passo A, nel formato `[{"url": "..."}]`
 - `searchPosts`: false, `searchComments`: false
 - `crawlCommentsPerPost`: true, `maxCommentsPerPost`: 10
-- `callOptions.maxTotalChargeUsd`: 0.7
+- `withinCommunity`: "", `includeNSFW`: false
+- `callOptions.maxTotalChargeUsd`: 0.95
+- `waitSecs`: 45
+
+Anche per il passo B controlla lo stato con `get-actor-run` e leggi il dataset.
 
 Lo scraper non ordina i commenti: ne raccoglie fino a 10 per post. Ordinali tu
 per `upVotes` (o `score`) decrescente e tieni i primi 10 di ogni post, dichiarando
