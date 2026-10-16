@@ -235,6 +235,19 @@ confrontabili tra un run e l'altro. Lancia lo scraper con
 - `callOptions.maxTotalChargeUsd`: 8 (tetto di spesa del run)
 - `waitSecs`: 45
 
+Campi da estrarre dal dataset (con `get-dataset-items`, parametro `fields`), sia
+per i post sia per i commenti:
+- `title` (titolo, solo post)
+- `body` (testo)
+- `bodyHtml` (testo in HTML)
+- `createdAt` (data di creazione)
+- `upVotes` (numero di voti positivi)
+- `score` (punteggio netto)
+- `commentsCount` (numero di commenti, solo post)
+- più i campi di collegamento necessari all'analisi: `dataType` (post o commento),
+  `searchTerm` (keyword di origine, per i conteggi per keyword), `postUrl`
+  (link per le citazioni)
+
 Se il run non è terminato entro `waitSecs`, controlla lo stato con
 `get-actor-run` (`waitSecs: 45`) finché non è `SUCCEEDED` o `FAILED`.
 Quando è `SUCCEEDED`, leggi i risultati con `get-dataset-items` (limit alto,
