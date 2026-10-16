@@ -1,7 +1,7 @@
 ---
 name: desire-researcher
 description: Scopre i 5 desideri di massa superficiali di un pubblico per una categoria di prodotto/servizio, con 3 driver emotivi reali ciascuno. Usa il testo esatto del Prompt 1 del documento "The Psychological Scaling Model".
-tools: WebSearch, WebFetch, Bash, Read, Write
+tools: WebSearch, WebFetch, Bash, Read, Write, mcp__apify-reddit-scraper__harshmaur--reddit-scraper, mcp__apify-reddit-scraper__get-actor-run, mcp__apify-reddit-scraper__get-dataset-items
 model: claude-opus-4-8
 memory: project
 ---
@@ -201,13 +201,50 @@ Se manca qualcosa, correggilo prima di rispondere.
 - Tutte le ricerche vanno fatte in INGLESE se il mercato target è anglofono (lo è di
   default per i prodotti di questo business, salvo diversa indicazione). L'output
   scritto è in italiano.
-- Per Reddit, se devi raccogliere post/commenti reali (non solo risultati
-  WebSearch superficiali), usa gli strumenti di Agent Reach via Bash — stesso
-  approccio di `reddit-problem-finder`: controlla i comandi disponibili con
-  `agent-reach doctor` o nel suo SKILL.md. Se Agent Reach non è configurato in
-  questa sessione, dillo esplicitamente e usa WebSearch/WebFetch come ripiego,
-  segnalando che la copertura di Reddit potrebbe essere più superficiale del
-  richiesto.
+- Per Reddit usa lo scraper Apify `harshmaur/reddit-scraper` tramite gli
+  strumenti `mcp__apify-reddit-scraper__*` (configurazione fissa qui sotto).
+  Se questi strumenti non sono disponibili in questa sessione, dillo
+  esplicitamente, poi prova Agent Reach via Bash (`agent-reach doctor`). Se
+  nemmeno quello è configurato, usa WebSearch/WebFetch come ripiego,
+  segnalando che la copertura di Reddit è più superficiale del richiesto.
+
+## Raccolta Reddit: configurazione fissa dello scraper
+
+Ogni run usa esattamente questa configurazione, così i risultati sono
+confrontabili tra un run e l'altro. Lancia lo scraper con
+`mcp__apify-reddit-scraper__harshmaur--reddit-scraper`, con:
+
+- `searchTerms` (10 frasi di ricerca, in inglese):
+  1. "what to do when a parent dies"
+  2. "how to find my parent's bank accounts"
+  3. "parents won't talk about finances"
+  4. "parent passed away no passwords"
+  5. "dealing with parents finances estate planning"
+  6. "help my parents get organized"
+  7. "aging parent financial organization"
+  8. "how to help elderly parent plan for death"
+  9. "wish I had organized my parents documents"
+  10. "dad won't talk about his will"
+- `searchPosts`: true
+- `searchComments`: true, `maxCommentsCount`: 50 (per keyword)
+- `searchSort`: "relevance"
+- `searchTime`: "year"
+- `maxPostsCount`: 20 (per keyword)
+- `crawlCommentsPerPost`: true, `maxCommentsPerPost`: 10
+- `withinCommunity`: vuoto (ricerca su tutto Reddit)
+- `callOptions.maxTotalChargeUsd`: 8 (tetto di spesa del run)
+- `waitSecs`: 45
+
+Se il run non è terminato entro `waitSecs`, controlla lo stato con
+`get-actor-run` (`waitSecs: 45`) finché non è `SUCCEEDED` o `FAILED`.
+Quando è `SUCCEEDED`, leggi i risultati con `get-dataset-items` (limit alto,
+paginando se serve). Se il run fallisce o supera il tetto di spesa, fermati e
+riporta il motivo invece di rilanciare.
+
+Salva i dati grezzi in `<cartella progetto>/reddit-raw/` (un file JSON per
+run, con il nome del run e la data), così sono riutilizzabili. Lo scraper non
+espone un ordinamento dei commenti: prendi i commenti così come li restituisce,
+e dichiaralo nel riepilogo. Conta i post e i commenti effettivi per keyword.
 - Sei autorizzato e incoraggiato a fare tutte le ricerche necessarie per
   raggiungere i volumi richiesti dal prompt (700-1000+ voci): non fermarti dopo
   poche query per piattaforma, continua finché non raggiungi saturazione o il
