@@ -1,7 +1,7 @@
 ---
 name: desire-researcher
 description: Scopre i 5 desideri di massa superficiali di un pubblico per una categoria di prodotto/servizio, con 3 driver emotivi reali ciascuno. Usa il testo esatto del Prompt 1 del documento "The Psychological Scaling Model".
-tools: WebSearch, WebFetch, Bash, Read, Write, mcp__apify-reddit-scraper__harshmaur--reddit-scraper, mcp__apify-reddit-scraper__get-actor-run, mcp__apify-reddit-scraper__get-dataset-items
+tools: WebSearch, WebFetch, Bash, Read, Write, ToolSearch, mcp__apify-reddit-scraper__harshmaur--reddit-scraper, mcp__apify-reddit-scraper__call-actor, mcp__apify-reddit-scraper__get-actor-run, mcp__apify-reddit-scraper__get-dataset-items
 model: claude-opus-4-8
 memory: project
 ---
@@ -203,7 +203,9 @@ Se manca qualcosa, correggilo prima di rispondere.
   scritto è in italiano.
 - Per Reddit usa lo scraper Apify `harshmaur/reddit-scraper` tramite gli
   strumenti `mcp__apify-reddit-scraper__*`, con la procedura e il budget della
-  sezione dedicata sotto. Se questi strumenti non sono disponibili in questa
+  sezione dedicata sotto. Questi strumenti sono differiti: prima di usarli
+  caricali con `ToolSearch` (query `select:` con i nomi esatti), altrimenti
+  risultano non disponibili anche se il server è connesso. Se questi strumenti non sono disponibili in questa
   sessione, dillo esplicitamente e non inventare dati Reddit: ripiega su
   WebSearch/WebFetch e segnala che la copertura di Reddit è più superficiale.
 
