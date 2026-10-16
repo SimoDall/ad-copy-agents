@@ -202,66 +202,76 @@ Se manca qualcosa, correggilo prima di rispondere.
   default per i prodotti di questo business, salvo diversa indicazione). L'output
   scritto è in italiano.
 - Per Reddit usa lo scraper Apify `harshmaur/reddit-scraper` tramite gli
-  strumenti `mcp__apify-reddit-scraper__*` (configurazione fissa qui sotto).
-  Se questi strumenti non sono disponibili in questa sessione, dillo
-  esplicitamente, poi prova Agent Reach via Bash (`agent-reach doctor`). Se
-  nemmeno quello è configurato, usa WebSearch/WebFetch come ripiego,
-  segnalando che la copertura di Reddit è più superficiale del richiesto.
+  strumenti `mcp__apify-reddit-scraper__*`, con la procedura e il budget della
+  sezione dedicata sotto. Se questi strumenti non sono disponibili in questa
+  sessione, dillo esplicitamente e non inventare dati Reddit: ripiega su
+  WebSearch/WebFetch e segnala che la copertura di Reddit è più superficiale.
 
-## Raccolta Reddit: configurazione fissa dello scraper
+## Raccolta Reddit: procedura e budget
 
-Ogni run usa esattamente questa configurazione, così i risultati sono
-confrontabili tra un run e l'altro. Lancia lo scraper con
-`mcp__apify-reddit-scraper__harshmaur--reddit-scraper`, con:
+Budget: circa 1 € (~$1) per run. Il tetto di spesa del run è $1: non superarlo.
 
-- `searchTerms` (10 frasi di ricerca, in inglese):
-  1. "what to do when a parent dies"
-  2. "how to find my parent's bank accounts"
-  3. "parents won't talk about finances"
-  4. "parent passed away no passwords"
-  5. "dealing with parents finances estate planning"
-  6. "help my parents get organized"
-  7. "aging parent financial organization"
-  8. "how to help elderly parent plan for death"
-  9. "wish I had organized my parents documents"
-  10. "dad won't talk about his will"
+### 1. Keyword (generate ad ogni run, non fisse)
+Prima di lanciare lo scraper:
+- leggi l'executive summary del progetto (percorso fornito dall'orchestratore)
+  e la categoria/nicchia;
+- genera 10 frasi di ricerca in inglese, come le scriverebbe una persona che
+  cerca aiuto reale su Reddit (domande, sfoghi, "how to…", "my parent…"). Varia
+  tra situazione del genitore, problema pratico (conti, password, documenti) e
+  dinamica familiare (fratelli, genitore che non vuole parlarne);
+- evita frasi che pescano solo lutto già avvenuto, se il profilo target è chi
+  si prepara con il genitore ancora vivo;
+- scrivi le 10 frasi nel manifest del run (punto 4) prima di lanciare.
+
+### 2. Parametri dello scraper
+- `searchTerms`: le 10 frasi generate
 - `searchPosts`: true
-- `searchComments`: true, `maxCommentsCount`: 50 (per keyword)
-- `searchSort`: "relevance"
+- `searchComments`: false (il budget non regge anche i commenti di ricerca)
+- `searchSort`: "top" (solo i post con più voti)
 - `searchTime`: "year"
-- `maxPostsCount`: 20 (per keyword)
+- `maxPostsCount`: 5 (per keyword)
 - `crawlCommentsPerPost`: true, `maxCommentsPerPost`: 10
 - `withinCommunity`: vuoto (ricerca su tutto Reddit)
-- `callOptions.maxTotalChargeUsd`: 8 (tetto di spesa del run)
+- `callOptions.maxTotalChargeUsd`: 1
 - `waitSecs`: 45
 
-Campi da estrarre dal dataset (con `get-dataset-items`, parametro `fields`), sia
-per i post sia per i commenti:
-- `title` (titolo, solo post)
-- `body` (testo)
-- `bodyHtml` (testo in HTML)
-- `createdAt` (data di creazione)
-- `upVotes` (numero di voti positivi)
-- `score` (punteggio netto)
-- `commentsCount` (numero di commenti, solo post)
-- più i campi di collegamento necessari all'analisi: `dataType` (post o commento),
-  `searchTerm` (keyword di origine, per i conteggi per keyword), `postUrl`
-  (link per le citazioni)
+Con questi parametri il costo atteso è circa $1,1 (50 post più fino a 500
+commenti). Il tetto a $1 può interrompere il run a fine raccolta: in quel caso
+il dataset è parziale, e lo dichiari.
 
-Se il run non è terminato entro `waitSecs`, controlla lo stato con
-`get-actor-run` (`waitSecs: 45`) finché non è `SUCCEEDED` o `FAILED`.
-Quando è `SUCCEEDED`, leggi i risultati con `get-dataset-items` (limit alto,
-paginando se serve). Se il run fallisce o supera il tetto di spesa, fermati e
-riporta il motivo invece di rilanciare.
+Lo scraper non ha un ordinamento dei commenti. Ne raccoglie fino a 10 per post:
+ordinali tu per `upVotes` decrescente (o `score`) e tieni i primi 10 di ogni
+post.
 
-Salva i dati grezzi in `<cartella progetto>/reddit-raw/` (un file JSON per
-run, con il nome del run e la data), così sono riutilizzabili. Lo scraper non
-espone un ordinamento dei commenti: prendi i commenti così come li restituisce,
-e dichiaralo nel riepilogo. Conta i post e i commenti effettivi per keyword.
-- Sei autorizzato e incoraggiato a fare tutte le ricerche necessarie per
-  raggiungere i volumi richiesti dal prompt (700-1000+ voci): non fermarti dopo
-  poche query per piattaforma, continua finché non raggiungi saturazione o il
-  target.
+### 3. Esecuzione e campi
+- lancia lo scraper, poi controlla lo stato con `get-actor-run` (`waitSecs: 45`)
+  finché non è `SUCCEEDED` o `FAILED`;
+- se fallisce o raggiunge il tetto di spesa, riporta il motivo e fermati;
+- leggi il dataset con `get-dataset-items`, paginando se serve, con questi
+  campi: `title`, `body`, `bodyHtml`, `createdAt`, `upVotes`, `score`,
+  `commentsCount`, `dataType` (post o commento), `searchTerm` (keyword di
+  origine), `postUrl` (link per le citazioni).
+
+### 4. Salvataggio
+Scrivi in `<cartella progetto>/reddit-raw/` un file `<data>-<runId>-manifest.md`
+con: run ID, dataset ID, data, costo stimato, le 10 keyword usate, i parametri,
+e i conteggi di post e commenti per keyword. I dati grezzi restano nel dataset
+Apify: non copiarli nel repo se non serve.
+
+### 5. Analisi
+- Filtra per rilevanza: scarta i post fuori tema anche se hanno molti voti
+  (casi di lavoro, cronaca, ecc.) e dichiara quanti ne hai scartati.
+- Basa i conteggi di desiderio sui post e sui commenti rilevanti.
+- Separa la quota di profilo Dana (figlia che si prepara con il genitore vivo)
+  e dichiarane la percentuale.
+- Se il dataset è troppo grande per essere letto per intero, leggilo a pagine
+  e dichiara il campione effettivamente analizzato.
+
+## Altre istruzioni per il workflow
+- Sei autorizzato a fare le ricerche necessarie entro i limiti di budget della
+  sezione Reddit e a fermarti quando raggiungi la saturazione dei temi. Il
+  target del prompt (700-1000+ voci) è un obiettivo ideale: se il budget non
+  lo consente, dichiara il volume reale raggiunto.
 - Se una piattaforma non è raggiungibile con WebSearch/WebFetch/Bash o dà
   risultati scarsi, dichiaralo nel riepilogo ricerca invece di inventare dati o
   citazioni.
