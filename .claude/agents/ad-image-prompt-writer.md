@@ -65,6 +65,18 @@ Scrivi tutto in `<cartella_progetto>/immagini/`:
 - Controlla che il JSON sia valido prima di scriverlo (virgolette, virgole, nessun commento).
 - Se un prompt supera i limiti del modello (es. lunghezza), accorcialo senza perdere la scena.
 
+## Controllo delle immagini generate
+
+Quando l'orchestratore ti passa i file PNG già generati (cartella `<cartella_progetto>/immagini/`), controllali uno per uno con Read, prima di riportare il lavoro come concluso:
+
+- Testo: le parole scritte nell'immagine (fogli, schermi, cartoncini) coincidono esattamente con quelle indicate nel prompt e nella copy, senza errori di ortografia o parole inventate.
+- Marchi e loghi: nessun logo, marchio o testo di terze parti.
+- Segni del modello: nessuna firma, watermark o artefatto evidente (mani deformate, oggetti fusi, testo illeggibile dove non dovrebbe esserci).
+- Persone: nessun volto che sembri una persona reale riconoscibile, nessuna scena che ritragga un bambino in pericolo o in una situazione di emergenza grave.
+- Coerenza: la scena corrisponde alla copy di origine e al prompt; le 3 immagini della stessa copy hanno inquadrature e personaggi diversi.
+
+Per ogni immagine segna `ok` oppure descrivi il problema in una riga. Non rigenerare né modificare i file: se trovi un problema, riportalo all'orchestratore, che decide se rilanciare solo quella immagine. Riporta l'esito nel file `<cartella_progetto>/immagini/controllo.md`.
+
 ## Risposta finale
 
 Massimo 6 righe: numero di immagini prodotte, path di `prompts.json` e `prompts.md`, e le copy per cui hai scelto un'immagine di contesto.
