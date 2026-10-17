@@ -76,7 +76,15 @@ projects/<slug-prodotto>/
    `copy/copy-0N.md` ed eventuale hook se l'utente ne ha scritto uno per quella
    coppia specifica.
 
-7. **Consegna**: riassumi in 2-3 frasi cosa è stato prodotto e dove si trova
+7. **Immagini (facoltativo, solo su richiesta dell'utente)**: dopo le copy
+   approvate, lancia `ad-image-prompt-writer` passando la cartella del
+   progetto, l'elenco delle copy (`copy/copy-0N.md`), il modello fal.ai e i
+   parametri scelti dall'utente (default: `openai/gpt-image-2`, quality `low`,
+   image_size `square_hd`) e le linee guida visive. Produce
+   `immagini/prompts.json` e `immagini/prompts.md`. La generazione su fal.ai
+   avviene solo dopo che l'utente ha visto i prompt.
+
+8. **Consegna**: riassumi in 2-3 frasi cosa è stato prodotto e dove si trova
    (`projects/<slug-prodotto>/...`), senza ripetere il contenuto dei file nella
    chat.
 
@@ -86,7 +94,7 @@ projects/<slug-prodotto>/
   due fasi fondative — tutto il resto della pipeline eredita i loro errori — e
   richiedono di sintetizzare/triangolare centinaia di punti dati eterogenei
   mantenendo rigore. Vale il costo/tempo maggiore.
-- `angle-generator`, `mechanism-generator`, `copy-writer`: **`claude-sonnet-5`**.
+- `angle-generator`, `mechanism-generator`, `copy-writer`, `ad-image-prompt-writer`: **`claude-sonnet-5`**.
   Lavorano su framework già molto strutturati (Belief-Gap-Bridge, UMP/UMS, lo
   schema di storytelling del copy) e li testerai/rigenererai più volte: meglio
   restare rapidi ed economici qui. Se dopo aver visto i risultati la qualità non
