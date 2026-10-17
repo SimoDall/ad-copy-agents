@@ -1,0 +1,72 @@
+[
+  {
+    "copy_id": "copy-01",
+    "image_id": "copy-01-img-1",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Photo shot on an iPhone, candid everyday snapshot taken by a family member from the doorway of a child's bedroom at dusk. A grandmother in her mid-sixties with a silver bob and a grey cardigan sits on the edge of a small toddler bed reading a picture book, while a three-year-old girl in yellow pyjamas hugs a worn grey plush rabbit beside her. Lit by a bedside lamp and the last daylight from the window. Pale blue walls, a laundry basket and a few toys on the floor, a folded blanket. Slightly off-centre framing, natural colours, a little digital grain and soft focus from the phone. The book cover has no legible text. No studio lighting, no professional camera look.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-01",
+    "image_id": "copy-01-img-2",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Photo shot on an iPhone, candid everyday snapshot taken from above while standing at a kitchen table. A woman's hands, wearing a rolled-up denim shirt sleeve and a thin silver bracelet, place a single handwritten sheet of paper on a light wooden table next to a mug of tea and a set of house keys. The sheet shows blue-pen handwriting with exactly this text: \"Bedtime: 1. Song 2. Teeth 3. Rabbit\". Morning light from a nearby window, a slightly crooked framing, a child's crayon drawing without legible text in the background, a bit of crumbs and everyday clutter on the table. Natural colours and a little phone-camera grain. No studio lighting, no professional camera look.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-02",
+    "image_id": "copy-02-img-2",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Photo shot on an iPhone, candid everyday snapshot taken by a partner from the living room. A Latino father in his early thirties, wearing a grey t-shirt and sweatpants, crouches in a family hallway at bedtime and plugs a small star-shaped nightlight into a wall socket. Seen from behind and in profile. A child's bedroom door is half open with a warm strip of light and a plush rabbit on the pillow inside. A ceiling light is on, a row of kids' shoes sits under a coat rack. Slightly tilted framing, natural indoor light mixed with the warm hallway light, a little phone-camera grain. No legible text. No studio lighting, no professional camera look.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-04",
+    "image_id": "copy-04-img-2",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Photo shot on an iPhone, candid everyday snapshot taken by someone standing nearby in a bright family kitchen. A white father in his mid-thirties with a short beard, in a rumpled blue button shirt, holds a toddler on one hip and a single sheet of paper at arm's length, squinting at two handwritten black-marker lines that read exactly: \"Her usual routine\" and \"The thing that calms her down\". The toddler tugs at his collar. A cereal bowl, a sippy cup and a plush rabbit sit on the counter. Morning sunlight through a window with sheer curtains, slightly off-centre framing, natural colours, a little phone-camera grain. Do not add any signature, watermark or mark in the corners. No studio lighting, no professional camera look.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  },
+  {
+    "copy_id": "copy-05",
+    "image_id": "copy-05-img-3",
+    "endpoint_id": "openai/gpt-image-2",
+    "input": {
+      "prompt": "Photo shot on an iPhone, candid everyday snapshot taken from above at the dinner table. A child's plate with pasta and peas sits next to a blue placemat with a small plastic fork and a cup of milk. A woman's hand with a plain wedding band holds a small white index card propped against a milk jug. The card has large, clearly legible handwriting reading exactly: \"Rabbit: the grey one with the torn ear. Song: Twinkle Twinkle.\" A grey plush rabbit with a torn ear sits on a chair beside the plate. A warm kitchen pendant light overhead, a dark window reflection behind, slightly tilted framing, natural colours, a little phone-camera grain. No studio lighting, no professional camera look.",
+      "quality": "low",
+      "image_size": "square_hd",
+      "num_images": 1,
+      "output_format": "png",
+      "background": "auto",
+      "enable_safety_checker": true
+    }
+  }
+]
