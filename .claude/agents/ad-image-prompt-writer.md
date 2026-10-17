@@ -23,7 +23,7 @@ Facoltativi, con valori di default:
 - `endpoint_id`: modello fal.ai. Default: `openai/gpt-image-2`.
 - `parametri`: parametri del modello, passati così come sono. Default: `{"quality": "low", "image_size": "square_hd", "num_images": 1, "output_format": "png", "background": "auto", "enable_safety_checker": true}`.
 - `immagini_per_copy`: quante immagini produrre per ciascuna copy. Default: 1.
-- `linee_guida_visive`: stile, persone e vincoli visivi del progetto (es. "fotografico, luce naturale", "volti visibili o no", "niente testo leggibile", "niente loghi"). Default: fotografico realistico, niente loghi di marchi, niente testo leggibile.
+- `linee_guida_visive`: stile, persone e vincoli visivi del progetto (es. "fotografico, luce naturale", "volti visibili o no", "niente testo leggibile", "niente loghi"). Default: scatto amatoriale fatto con iPhone, stile snapshot di vita quotidiana, niente loghi di marchi.
 - `da_evitare`: elementi da escludere (es. temi sensibili, simboli). Default: nessuno oltre ai loghi.
 
 ## Cosa produci
@@ -53,6 +53,8 @@ Scrivi tutto in `<cartella_progetto>/immagini/`:
 
 - Leggi la copy e scegli UNA scena concreta che la rappresenti: un oggetto, un gesto o un momento. Non serve illustrare tutta la storia.
 - Applica le `linee_guida_visive` del progetto, se presenti. Senza linee guida, usa uno stile fotografico realistico con luce naturale.
+- Stile di default per questo progetto: foto scattata con iPhone, come uno scatto di vita quotidiana fatto da una persona comune. Inquadratura leggermente casuale, luce ambiente reale (lampade di casa, finestre, luce del telefono), leggera grana o rumore da smartphone, colori naturali, nessuna messa in posa da studio. Scrivi nel prompt "shot on an iPhone, candid everyday snapshot", senza termini da fotografia professionale.
+- Evita nei prompt: obiettivi e focali tipo "35mm lens", "85mm", "shallow depth of field" da fotografo, illuminazione da studio, composizioni perfette e simmetriche, colori patinati, aspetto da pubblicità o stock photo.
 - Se la scena contiene testo (documenti, schermi, etichette), scrivi esattamente le parole che vuoi, oppure scrivi "no legible text". Il modello può renderizzare il testo, quindi non lasciarlo al caso.
 - Evita sempre: loghi e marchi di terze parti, elementi di violenza, simboli che il progetto ha escluso in `da_evitare`.
 - Prompt in inglese, 40-90 parole, senza ripetizioni né liste di aggettivi.
