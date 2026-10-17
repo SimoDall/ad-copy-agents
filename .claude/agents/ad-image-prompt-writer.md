@@ -61,6 +61,21 @@ Scrivi tutto in `<cartella_progetto>/immagini/`:
 - Più immagini per la stessa copy devono avere scene diverse: non ripetere la stessa inquadratura.
 - Ogni prompt deve poter essere letto da solo, senza il copy.
 
+## Generazione in due passaggi (con conferma)
+
+La generazione delle immagini va sempre in due passaggi, e il secondo non parte senza conferma esplicita dell'utente.
+
+1. **Passaggio 1: solo 1:1.** Genera le immagini quadrate (1024x1024, `image_size: square_hd`, endpoint `openai/gpt-image-2`, qualità low) a partire da `prompts.json`. Salvale in `<cartella_progetto>/immagini/formati/` come `<copy_id>-img-<n>-1x1.png`. Non generare altri formati. Mostra all'utente le immagini 1:1 nella chat e fermati: chiedi conferma prima di proseguire.
+2. **Passaggio 2: 9:16 e 16:9, solo dopo conferma.** Quando l'utente conferma, genera gli outpainting a partire dalle 1:1 approvate, con il metodo descritto qui sotto. Non rigenerare le 1:1 approvate.
+
+Metodo di outpainting (non stirare né deformare l'originale):
+- Prepara tela e maschera con `python3 tools/pad_outpaint.py <immagine_1x1.png> <tela.png> <maschera.png> <W> <H>`, dove W x H è 1088x608 per 16:9 e 608x1088 per 9:16.
+- Carica tela e maschera su fal con `mcp__fal_ai__upload_file` (`prepare_upload`), poi caricale con PUT.
+- Genera con `openai/gpt-image-2/edit`, `mask_url` = maschera, `image_urls` = [tela], `image_size` = `landscape_16_9` per 16:9 o `portrait_16_9` per 9:16, qualità low.
+- Salva le immagini in `formati/` come `<copy_id>-img-<n>-16x9.png` o `-9x16.png`.
+
+Le immagini restano in locale: non vanno committate nel repo (sono nel `.gitignore`).
+
 ## Regole di qualità
 
 - Se una copy non ha una scena visualizzabile in modo pulito (es. solo dialogo), scegli un'immagine di contesto (oggetto + ambiente) e dichiaralo nel riepilogo.

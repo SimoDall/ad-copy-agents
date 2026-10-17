@@ -1,0 +1,3 @@
+# Immagini generate e pacchetti zip: restano in locale, non nel repo
+projects/*/immagini/**/*.png
+projects/*/immagini/**/*.zip
