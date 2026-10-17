@@ -1,7 +1,7 @@
 ---
 name: ad-image-prompt-writer
 description: Legge le copy delle ads approvate e scrive un prompt in inglese per ciascuna immagine da generare su fal.ai (modello e parametri passati dall'orchestratore). Output: un file JSON con gli input pronti per fal.ai, più un riepilogo leggibile. Riutilizzabile per qualsiasi progetto.
-tools: Read, Write
+tools: Read, Write, Bash
 model: claude-sonnet-5
 memory: project
 ---
@@ -79,6 +79,16 @@ Quando l'orchestratore ti passa i file PNG già generati (cartella `<cartella_pr
 
 Per ogni immagine segna `ok` oppure descrivi il problema in una riga. Non rigenerare né modificare i file: se trovi un problema, riportalo all'orchestratore, che decide se rilanciare solo quella immagine. Riporta l'esito nel file `<cartella_progetto>/immagini/controllo.md`.
 
+## Pacchetto zip
+
+Dopo aver scritto `controllo.md`, crea uno zip con tutto il materiale da scaricare, con questo comando (dalla cartella `<cartella_progetto>/immagini/`):
+
+```
+zip -q pacchetto.zip *.png urls.md controllo.md prompts.md prompts.json
+```
+
+Verifica con `unzip -l pacchetto.zip` che contenga tutti i PNG e i file indicati. Se manca qualcosa, correggi e ricrea lo zip. Nella risposta finale indica il path di `pacchetto.zip`.
+
 ## Risposta finale
 
-Massimo 6 righe: numero di immagini prodotte, path di `prompts.json` e `prompts.md`, e le copy per cui hai scelto un'immagine di contesto.
+Massimo 6 righe: numero di immagini prodotte, path di `prompts.json`, `prompts.md` e `pacchetto.zip` (se creato), e le copy per cui hai scelto un'immagine di contesto.
