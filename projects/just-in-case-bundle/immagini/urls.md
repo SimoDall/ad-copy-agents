@@ -1,7 +1,7 @@
 # Immagini generate — Just-In-Case Bundle
 
 Modello: openai/gpt-image-2 · qualità low · square_hd · PNG · 15 job completati su fal.ai.
-I file sono ospitati sul CDN fal (link diretti qui sotto). Il download nel repo è bloccato dalla policy di rete dell'ambiente (`v3b.fal.media`, 403): i PNG non sono salvati nella cartella.
+I file sono ospitati sul CDN fal (link diretti qui sotto). I PNG sono anche salvati in questa cartella (`copy-0N-img-M.png`).
 
 | image_id | Scena | Link |
 | --- | --- | --- |
@@ -19,4 +19,4 @@ I file sono ospitati sul CDN fal (link diretti qui sotto). Il download nel repo 
 | copy-04-img-3 | Donna che rilegge la lista di sera | https://v3b.fal.media/files/b/0aaeb8f4/ppgu6Kv4W4OSB8_sCJT-h_1X1GQJfS.png |
 | copy-05-img-1 | Zia e nipote cercano il coniglio | https://v3b.fal.media/files/b/0aaeb8f4/Kx0w-PMpKiZu8n8Ym8UNE_7rrnvyt3.png |
 | copy-05-img-2 | Madre influenzata sul divano | https://v3b.fal.media/files/b/0aaeb8f4/tcPYZtP4wNatDcBSrHWwm_QUhqb5Bq.png |
-| copy-05-img-3 | Biglietto con le regole e piatto | https://v3b.fal.media/files/b/0aaeb8f4/YN_-lZHyzD3Hma6Bc_FPV_CaGcKX9r.png |
+| copy-05-img-3 | Biglietto con le regole e piatto | https://v3b.fal.media/files/b/0aaeb8f3/YN_-lZHyzD3Hma6Bc_FPV_CaGcKX9r.png |
