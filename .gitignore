@@ -1,3 +1,6 @@
 # Immagini generate e pacchetti zip: restano in locale, non nel repo
 projects/*/immagini/**/*.png
 projects/*/immagini/**/*.zip
+
+# Worktree temporanei usati dagli agent in isolamento: artefatti locali, non da versionare
+.claude/worktrees/
