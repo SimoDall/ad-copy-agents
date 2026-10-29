@@ -28,3 +28,23 @@ Base conteggio: 79 voci del profilo Dana (figlia che si prepara, genitore vivo) 
 - Keyword su password/bank/privacy pescano MOLTO rumore inverso (genitori che controllano conti di figli adolescenti): ~64% del dataset è fuori tema. Filtrarlo sempre.
 - In run passati lo stesso server MCP era risultato "connesso ma senza tool esposti" e senza APIFY_TOKEN: fare un probe rapido dei tool + budget prima di promettere dati.
 - Le % dei DESIDERI ora sono conteggi reali; le % dei DRIVER dentro ogni desiderio restano una ripartizione ragionata dei conteggi di quel desiderio.
+
+## Nicchia: digital estate-planning / family emergency organizer come USO PERSONALE (pubblico "Barb", Germania — "Notfallordner")
+Progetto: `projects/family-handover-folder-barb-de/` (Leave It Sorted). Run 2026-10-29, dataset Reddit tedesco ~135-140 voci totali (molto sotto il target 700-1000+; Reddit DE su questo tema è scarso e skewed 25-50 anni, non 55-78).
+
+### 5 desideri di massa (stime, NON conteggi solidi come nel run USA/Figli — campione piccolo)
+1. "Voglio che la mia famiglia trovi tutto senza cercare" — ~21% Reddit. Headline di categoria già usata da concorrenti e comuni/enti pubblici tedeschi.
+2. "Voglio che le mie volontà vengano rispettate" — ~36% grezzo ma GONFIATO da 2 keyword (Patientenverfügung/Testament). Priorità #1 negli over-55 (studio Commerzbank).
+3. "Voglio risparmiare ai miei figli la burocrazia dopo di me" — ~20%. Citazione forte sul padre che preparava anche le lettere di disdetta contratti. Rischio concreto citato: Erbschein 1.800-3.600€.
+4. "Voglio togliermi finalmente questo pensiero" — ~9% ma post/commento più votati del dataset (308/314 voti): raccoglitore lasciato vuoto per mesi, colpa/sollievo.
+5. "Voglio che i miei cari possano agire subito per me" — ~14%, in parte bisogno NON ancora consapevole (62% over-60 crede erroneamente che i parenti possano decidere automaticamente per loro).
+
+### Insight stabili sul mercato tedesco
+- Il Notfallordner è già un concetto mainstream, spesso gratis (comuni, Stiftung Warentest oltre 1M copie distribuite) → awareness/scetticismo diverso da USA/UK.
+- Diffidenza diffusa: percepito come esca di marketing da consulenti finanziari; cercano esplicitamente qualcosa "das nicht nach Abzocke aussieht" (che non sembri una fregatura).
+- ~79% dei post Reddit trovati erano fuori tema (vs ~64% nel run USA/Figli) — il rumore è ancora più alto in tedesco.
+
+### Pattern ambiente/strumenti (run Germania)
+- Amazon.de bloccato; Facebook, YouTube e gutefrage.net NON raggiungibili in questo run. Su Etsy.de nessun Notfallordner in tedesco con recensioni.
+- Attenzione al budget Apify: in questo run i tetti di spesa impostati sui 2 passi hanno sommato $1,75 (sopra il budget $1 previsto dal prompt); il tool non espone la spesa reale in $, solo stime indirette. Verificare sempre che `callOptions.maxTotalChargeUsd` dei due passi sommi ≤ budget PRIMA di lanciare, non dopo.
+- Se un run sembra incompleto, ricontrollare lo stato invece di rilanciare subito una seconda raccolta: in questo run una "seconda raccolta commenti" lanciata per sospetto di dataset parziale si è rivelata in gran parte un doppione (la prima si era completata da sola nel frattempo).
