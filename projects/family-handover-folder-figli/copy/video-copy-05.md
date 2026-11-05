@@ -1,3 +1,5 @@
+> SOSTITUITO da video-ugc-storia.md (storia con hook, dolore, scoperta, soluzione, CTA).
+
 # Video 20-30 s: copy-05 (fratelli + padre che scrive)
 
 Formato: UGC verticale 9:16. Avatar che parla in camera per le battute, b-roll per il resto.
