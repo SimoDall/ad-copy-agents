@@ -24,7 +24,7 @@ Immagine: quaderno aperto con una penna (vedi immagine copy-03 v1, senza persone
 
 **Slide 5 — il tuo turno**
 Titolo: "If it can happen to them, it can happen to you."
-Riga: "Give your parents the pen. One place, their words, your peace of mind. Give the gift of being ready — €47."
+Riga: "Give your parents the pen. One place, their words, your peace of mind. See what's inside."
 Immagine: padre che scrive, figlio accanto (vedi immagine copy-05).
 
-Note: nessun riferimento a malattia o emergenza in primo piano. Slide 3 e 5 hanno immagini da generare o già pronte (copy-05). Testo da verificare prima della produzione.
+Note: nessun riferimento a malattia o emergenza in primo piano. Nessun prezzo nel carosello: il prezzo si scopre cliccando sul link, il CTA porta alla landing. Slide 3 e 5 hanno immagini da generare o già pronte (copy-05). Testo da verificare prima della produzione.
