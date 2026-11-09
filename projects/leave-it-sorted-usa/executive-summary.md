@@ -39,7 +39,14 @@ Promesse e argomenti di vendita presenti sul sito:
 - Garanzia/rimborso: non esplicitata nelle pagine lette
 - Social proof dichiarato: 4.8/5 su 3.240 recensioni, 86% a cinque stelle, "3.000+ famiglie" (da verificare: dichiarazioni del sito)
 
-**Nota di mercato (chiarita dall'utente)**: il mercato è anglofono, e il prodotto è personalizzato per paese (AU, CA, NZ, USA, UK). La pagina letta (leaveitsorted.com) è la versione **UK**: HMRC, Inheritance Tax, probate, England & Wales, "Tell Us Once does not cover Northern Ireland". Non esiste una versione USA pubblicata sul sito (/en-us, /en-ca, /en-au, /en-nz, /en-gb danno 404). Il contenuto della versione USA va quindi fornito dall'utente. Fino ad allora, il catalogo UK è usato solo come riferimento di struttura e promesse, e le copy USA non devono citare scadenze, tasse o enti britannici.
+**Nota di mercato (chiarita dall'utente)**: il mercato è anglofono. Il prodotto è **identico in tutti i paesi** (AU, CA, NZ, USA, UK): cambia solo **un documento specifico per nazione** (il documento con enti, scadenze e moduli locali). La home page è la stessa per tutti, ma il testo e i prezzi si adattano all'IP dell'utente.
+
+Conseguenze per la lettura del sito:
+- La home e le pagine lette sono state scaricate da un IP non statunitense. Il testo britannico (HMRC, probate, England & Wales, "Tell Us Once does not cover Northern Ireland") e i prezzi in EUR possono quindi essere la variante servita a quell'IP, non la vista USA. Non va trattato come "il prodotto è britannico".
+- La vista USA (testo della home, prezzi in USD, eventuale documento USA) non è verificabile da questa sandbox. Va fornita dall'utente.
+- Le varianti /en-us, /en-ca, /en-au, /en-nz, /en-gb danno 404: il sito non espone URL per paese.
+
+Fino a conferma, le copy USA non devono citare scadenze, tasse o enti britannici, e non devono usare prezzi in EUR.
 
 ## Competitor — myestatekit.co.uk (rilevato il 2026-11-09)
 - **Prodotto**: "The Family Handover Kit" — piano operativo basato sui 5-28-6 (5 giorni, 28 giorni, 6 mesi dalla morte) con le registrazioni dei conti.
