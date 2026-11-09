@@ -39,7 +39,7 @@ Promesse e argomenti di vendita presenti sul sito:
 - Garanzia/rimborso: non esplicitata nelle pagine lette
 - Social proof dichiarato: 4.8/5 su 3.240 recensioni, 86% a cinque stelle, "3.000+ famiglie" (da verificare: dichiarazioni del sito)
 
-**Attenzione — mismatch di mercato**: il sito è costruito sul mercato britannico (HMRC, Inheritance Tax, probate, England & Wales, "Tell Us Once does not cover Northern Ireland", prezzi in EUR). Il target dichiarato dall'utente è USA. Le copy che promettono cose specifiche del Regno Unito (scadenze di registrazione, IHT, probate) non vanno usate su mercato USA senza una verifica di prodotto.
+**Nota di mercato (chiarita dall'utente)**: il mercato è anglofono, e il prodotto è personalizzato per paese (AU, CA, NZ, USA, UK). La pagina letta (leaveitsorted.com) è la versione **UK**: HMRC, Inheritance Tax, probate, England & Wales, "Tell Us Once does not cover Northern Ireland". Non esiste una versione USA pubblicata sul sito (/en-us, /en-ca, /en-au, /en-nz, /en-gb danno 404). Il contenuto della versione USA va quindi fornito dall'utente. Fino ad allora, il catalogo UK è usato solo come riferimento di struttura e promesse, e le copy USA non devono citare scadenze, tasse o enti britannici.
 
 ## Competitor — myestatekit.co.uk (rilevato il 2026-11-09)
 - **Prodotto**: "The Family Handover Kit" — piano operativo basato sui 5-28-6 (5 giorni, 28 giorni, 6 mesi dalla morte) con le registrazioni dei conti.
